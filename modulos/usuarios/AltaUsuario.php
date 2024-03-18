@@ -21,7 +21,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="tipo" class="form-label">Tipo de Usuario</label>
-                    <select class="form-select form-select-lg" name="tipo" id="tipo">
+                    <select class="form-select form-select" name="tipo" id="tipo">
                         <option selected>Seleccione el tipo de usuario</option>
                         <option value="1">Administrador</option>
                         <option value="2">Usuario</option>

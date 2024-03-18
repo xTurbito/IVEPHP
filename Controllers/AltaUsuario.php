@@ -5,41 +5,43 @@ require_once "../config/dbcontext.php";
 $json = file_get_contents("php://input");
 $datos = json_decode($json, true);
 
-// Verifica si los datos requeridos están presentes
-if (isset($datos["usuario"], $datos["nombre"], $datos["password"], $datos["tipo"])) {
-    
-    $usuario = $datos["usuario"];
-    $nombre = $datos["nombre"];
-    $password = $datos["password"];
-    $tipo = $datos["tipo"];
+$Resultado = "error";
 
-    // Establece lActivo en 1
+if(isset($datos["nombre"], $datos["descripcion"], $datos["precio_costo"], $datos["precio_venta"], $datos["stock"], $datos["departamentos"], $datos["foto_producto"])) {
+    // Validar los datos recibidos
+    $nombre = $datos["nombre"];
+    $descripcion = $datos["descripcion"];
+    $precioCosto = $datos["precio_costo"];
+    $precioVenta = $datos["precio_venta"];
+    $stock = $datos["stock"];
+    $departamentos = $datos["departamentos"];
+    $fotoProducto = $datos["foto_producto"];
     $lActivo = 1;
 
-    $sql = "INSERT INTO usuarios (usuario, nombre, password, tipo_usuclave,lActivo) VALUES (?, ?, ?, ?, ?)";
 
-    // Prepara la consulta
+
+
+    $foto_producto_bd = $fotoProducto; 
+
+    $sql = "INSERT INTO productos(Nombre, Descripcion, Precio, Stock, lActivo, foto_producto, precio_cost, IDDepartamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($link, $sql);
 
-    // Vincula los parámetros
-    mysqli_stmt_bind_param($stmt, "ssssi", $usuario, $nombre, $password, $tipo, $lActivo);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "ssiiisii", $nombre, $descripcion, $precioVenta, $stock, $lActivo, $foto_producto_bd, $precioCosto, $departamentos);
 
-    // Ejecuta la consulta
-    if (mysqli_stmt_execute($stmt)) {
-        $Resultado = "ok";
+        if (mysqli_stmt_execute($stmt)) {
+            $Resultado = "ok";
+        } else {
+            $Resultado = "error: " . mysqli_stmt_error($stmt);
+        }
+
+        // Cierra la consulta preparada
+        mysqli_stmt_close($stmt);
     } else {
-        $Resultado = "error: " . mysqli_stmt_error($stmt);
+        $Resultado = "error: " . mysqli_error($link);
     }
-
-    // Cierra la consulta preparada
-    mysqli_stmt_close($stmt);
-} else {
-    // Si falta algún dato requerido
-    $Resultado = "error";
 }
 
 // Devuelve el resultado como un JSON
 echo '{"Resultado":"'.$Resultado.'"}';
-
 ?>
-
