@@ -55,7 +55,7 @@ if (isset($_GET['txtID'])) {
                 <label for="status" class="form-label">Estado del Usuario</label>
                 <select aria-valuemax="" class="form-select form-select" name="status" id="status">
                     <option value="1" <?php echo ($registro["lactivo"] == 1) ? 'selected' : ''; ?>>Activado</option>
-                    <option value="2" <?php echo ($registro["lactivo"] == 2) ? 'selected' : ''; ?>>Desactivado</option>
+                    <option value="0" <?php echo ($registro["lactivo"] == 0) ? 'selected' : ''; ?>>Desactivado</option>
                 </select>
             </div>
 

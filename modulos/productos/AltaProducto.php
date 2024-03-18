@@ -57,64 +57,75 @@
     }
 
     //Alta del Producto
-    document.getElementById("formProducto").addEventListener("submit", function(e){
-        e.preventDefault();
+    document.getElementById("formProducto").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-        const nombre = document.getElementById("nombre").value;
-        const descripcion = document.getElementById("descripcion").value;
-        const precio_costo = document.getElementById("precio_costo").value;
-        const precio_venta = document.getElementById("precio_venta").value;
-        const stock = document.getElementById("stock").value;
-        const departamentos = document.getElementById("departamentos").value;
-        const fotoProducto = document.getElementById("foto_producto");
+    const nombre = document.getElementById("nombre").value;
+    const descripcion = document.getElementById("descripcion").value;
+    const precio_costo = document.getElementById("precio_costo").value;
+    const precio_venta = document.getElementById("precio_venta").value;
+    const stock = document.getElementById("stock").value;
+    const departamentos = document.getElementById("departamentos").value;
+    const fotoProducto = document.getElementById("foto_producto").files[0];
 
-        fileInput.addEventListener("change", e => {
-            const file = fileInput.files[0];
-            const reader = new FileReader();
+    // Verifica si se ha seleccionado una imagen
+    if (!fotoProducto) {
+        alert("Por favor, seleccione una imagen.");
+        return;
+    }
 
-            reader.addEventListener("load", () => { 
-            });
+    const reader = new FileReader();
 
-            reader.readAsDataURL(file);
-        })
+    reader.addEventListener("load", function() {
+        const imgdata = reader.result;
 
-        let valores = {
-            nombre,
-            descripcion,
-            precio_costo,
-            precio_venta,
-            stock,
-            departamentos,
-            fotoProducto
-        };
-        
-        let URL = "../../Controllers/AltaProducto.php"
+        // Llama a la función para subir la imagen al servidor
+        subirImagen(imgdata, nombre, descripcion, precio_costo, precio_venta, stock, departamentos);
+    });
 
-        axios.post(URL, valores, {
-            header: {
-                'Content-Type': 'applications/json'
+    reader.readAsDataURL(fotoProducto);
+});
+
+function subirImagen(imagenBase64, nombre, descripcion, precio_costo, precio_venta, stock, departamentos) {
+    // URL del controlador PHP para subir la imagen
+    let URL = "../../Controllers/AltaProducto.php";
+
+    // Objeto FormData para enviar datos
+    let formData = new FormData();
+    formData.append("imagen", imagenBase64);
+    formData.append("NombreImagen", "Imagen"); // Cambia esto si necesitas un nombre específico para la imagen
+    formData.append("App", "JS");
+
+    // Agrega los demás datos del formulario al objeto FormData
+    formData.append("nombre", nombre);
+    formData.append("descripcion", descripcion);
+    formData.append("precio_costo", precio_costo);
+    formData.append("precio_venta", precio_venta);
+    formData.append("stock", stock);
+    formData.append("departamentos", departamentos);
+
+    // Realiza la solicitud POST al servidor usando axios
+    axios.post(URL, formData)
+        .then(function(response) {
+            if (response.data.Resultado == "ok") {
+                Swal.fire({
+                    title: "<strong>Registro Exitoso</strong>",
+                    html: "<i>El Producto <strong>" +
+                        nombre +
+                        "</strong> fue registrado con éxito</i>",
+                    icon: "success",
+                    showCancelButton: false,
+                    confirmButtonText: "OK",
+                }).then(function() {
+                    window.location.href = "../../Modulos/Productos/index.php";
+                });
+            } else {
+                alert("ERROR!!!");
             }
         })
-        .then(function(response){
-            if(response.data.Resultado == "ok"){
-                Swal.fire({
-                        title: "<strong>Registro Exitoso</strong>",
-                        html: "<i>El Producto <strong>" +
-                            nombre +
-                            "</strong> fue registrado con éxito</i>",
-                        icon: "success",
-                        showCancelButton: false,
-                        confirmButtonText: "OK",
-                    }).then(function() {
-                        window.location.href = "../../Modulos/Productos/index.php";
-                    });
-            }else {
-                    alert("ERROR!!!");
-                }
-        })
         .catch(function(error) {
-                alert("Error: " + error.message);
-            });
-    })
+            alert("Error: " + error.message);
+        });
+}
 </script>
 <?php include("../../layout/foot.php"); ?>
