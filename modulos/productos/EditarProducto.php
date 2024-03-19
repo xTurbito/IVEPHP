@@ -35,7 +35,6 @@ if (isset($_GET['txtID'])) {
         echo "NO SE ENCONTRARON REGISTROS";
     }
 }
-
 ?>
 <?php include("../../layout/top.php") ?>
 <br>
@@ -83,14 +82,25 @@ if (isset($_GET['txtID'])) {
             </div>
             <div class="mb-3">
                 <label for="foto_producto" class="form-label">Foto del Producto</label>
-                <?php if (!empty($fotoproducto)) : ?>
-                    <img src="data:image/jpeg;base64, <?php echo $fotoproducto; ?>" class="img-fluid" alt="Foto del Producto">
-                <?php else : ?>
-                    <p>No hay imagen disponible</p>
-                <?php endif; ?>
+                <br>
+                <img src="<?php echo $fotoproducto; ?>" width="300px" height="300px" alt="Foto del Producto">
             </div>
 
         </form>
     </div>
 </div>
+<script>
+    const handleImageChance = () => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          $fotoproducto: reader.result;
+        };
+
+        if(file){
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
 <?php include("../../layout/foot.php"); ?>

@@ -29,7 +29,7 @@
                 <?php include("./SelectDepartamentos.php") ?>
                 <div class="mb-3">
                     <label for="foto_producto" class="file-label">Foto del Producto
-                    <input type="file" id="foto_producto" class="form-control" onchange="previewImage(event)" required>
+                    <input type="file" id="foto_producto"  class="form-control" onchange="previewImage(event)" required>
                     <img id="preview" >
                     </label>
                 </div>

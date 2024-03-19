@@ -7,28 +7,20 @@ $datos = json_decode($json, true);
 
 $Resultado = "error";
 
-if(isset($datos["nombre"], $datos["descripcion"], $datos["precio_costo"], $datos["precio_venta"], $datos["stock"], $datos["departamentos"], $datos["foto_producto"])) {
+if(isset($datos["usuario"], $datos["password"], $datos["nombre"], $datos["tipo"])) {
     // Validar los datos recibidos
+    $usuario = $datos["usuario"];
+    $password = $datos["password"];
     $nombre = $datos["nombre"];
-    $descripcion = $datos["descripcion"];
-    $precioCosto = $datos["precio_costo"];
-    $precioVenta = $datos["precio_venta"];
-    $stock = $datos["stock"];
-    $departamentos = $datos["departamentos"];
-    $fotoProducto = $datos["foto_producto"];
+    $tipo_usuclave = $datos["tipo"]; 
+
     $lActivo = 1;
 
-
-
-
-    $foto_producto_bd = $fotoProducto; 
-
-    $sql = "INSERT INTO productos(Nombre, Descripcion, Precio, Stock, lActivo, foto_producto, precio_cost, IDDepartamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO usuarios(usuario, password, nombre, tipo_usuclave, lActivo) VALUES (?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($link, $sql);
 
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "ssiiisii", $nombre, $descripcion, $precioVenta, $stock, $lActivo, $foto_producto_bd, $precioCosto, $departamentos);
-
+        mysqli_stmt_bind_param($stmt, "ssssi", $usuario, $password, $nombre, $tipo_usuclave, $lActivo);
         if (mysqli_stmt_execute($stmt)) {
             $Resultado = "ok";
         } else {

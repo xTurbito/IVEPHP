@@ -22,6 +22,7 @@ if ($result->num_rows > 0) {
             <td scope="row"><?php echo $row['Descripcion'] ?></td>
             <td><?php echo $row['Precio'] ?></td>
             <td><?php echo $row['Stock'] ?></td>
+            <td><?php echo $row['NombreDepartamento'] ?></td>
             <th><?php echo ($row['lActivo'] == 1) ? 'Activado' : 'Desactivado'; ?></th>
             <td><a name="btnEditarProducto" id="btnEditarProducto" class="btn btn-info" href="EditarProducto.php?txtID=<?php echo $row['IDProducto']; ?>" role="button"><i class="fa-regular fa-pen-to-square"></i></a>
                 |

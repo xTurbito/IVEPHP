@@ -51,7 +51,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/Departaments">
+          <a class="nav-link" href="<?php echo $url_base?>modulos/departamentos/">
             Departamentos
           </a>
         </li>

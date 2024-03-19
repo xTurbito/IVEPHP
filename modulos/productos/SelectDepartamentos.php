@@ -1,7 +1,7 @@
 <?php
 require("../../config/dbcontext.php");
 
-$sql = "SELECT NombreDepartamento FROM departamentos";
+$sql = "SELECT idDepartamento, NombreDepartamento FROM departamentos";
 $result = $link->query($sql);
 ?>
 
@@ -12,9 +12,10 @@ $result = $link->query($sql);
     <?php
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            $idDepartamento = $row["idDepartamento"];
             $nombreDepartamento = $row["NombreDepartamento"];
             ?>
-            <option value='<?php echo $nombreDepartamento; ?>'><?php echo $nombreDepartamento; ?></option>
+            <option value='<?php echo $idDepartamento; ?>'><?php echo $nombreDepartamento; ?></option>
             <?php
         }
     } else {
@@ -28,4 +29,5 @@ $result = $link->query($sql);
 </div>
 
 <?php
-$link->close(); 
+$link->close();
+?>
