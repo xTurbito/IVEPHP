@@ -3,7 +3,7 @@ $sql = "SELECT
 P.IDProducto,
 P.Nombre,
 P.Descripcion,
-P.Precio,
+P.precio_venta,
 P.Stock,
 P.lActivo,
 P.IDDepartamento,
@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
         <tr>
             <td scope="row"><?php echo $row['Nombre'] ?></td>
             <td scope="row"><?php echo $row['Descripcion'] ?></td>
-            <td><?php echo $row['Precio'] ?></td>
+            <td><?php echo $row['precio_venta'] ?></td>
             <td><?php echo $row['Stock'] ?></td>
             <td><?php echo $row['NombreDepartamento'] ?></td>
             <th><?php echo ($row['lActivo'] == 1) ? 'Activado' : 'Desactivado'; ?></th>

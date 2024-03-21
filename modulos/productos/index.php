@@ -19,7 +19,7 @@ include("../../layout/top.php")
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Stocl</th>
+                        <th scope="col">Stock</th>
                         <th scope="col">Departamento</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>

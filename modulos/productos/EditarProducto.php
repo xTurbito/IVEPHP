@@ -12,12 +12,12 @@ if (isset($_GET['txtID'])) {
         $registro = $result->fetch_assoc();
         $nombre = $registro["Nombre"];
         $descripcion = $registro["Descripcion"];
-        $precio = $registro["Precio"];
+        $precio_venta = $registro["precio_venta"];
         $stock = $registro["Stock"];
         $activo = $registro["lActivo"];
-        $fotoproducto = $registro["fotoproducto"];
-        $precio_cost = $registro["precio_cost"];
+        $precio_costo = $registro["precio_costo"];
         $IDDepartamento = $registro["IDDepartamento"];
+        $fotoproducto = $registro["fotoproducto"];
 
         // Consulta para obtener el nombre del departamento
         $query_departamento = $link->prepare("SELECT NombreDepartamento FROM Departamentos WHERE IDDepartamento = ?");
@@ -53,54 +53,47 @@ if (isset($_GET['txtID'])) {
             </div>
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripcion</label>
-                <input type="text" value="<?php echo $descripcion; ?>" class="form-control" name="departamento" id="departamento">
+                <input type="text" value="<?php echo $descripcion; ?>" class="form-control" name="descripcion" id="descripcion">
             </div>
             <div class="mb-3">
                 <label for="precio" class="form-label">Precio Costo</label>
-                <input type="number" value="<?php echo $precio_cost; ?>" class="form-control" name="precio" id="precio">
+                <input type="number" value="<?php echo $precio_costo; ?>" class="form-control" name="precio_costo" id="precio_costo">
             </div>
             <div class="mb-3">
                 <label for="precio" class="form-label">Precio Venta</label>
-                <input type="number" value="<?php echo $precio; ?>" class="form-control" name="precio" id="precio">
+                <input type="number" value="<?php echo $precio_venta; ?>" class="form-control" name="precio_venta" id="precio_venta">
             </div>
             <div class="mb-3">
                 <label for="stock" class="form-label">Stock</label>
                 <input type="number" value="<?php echo $stock; ?>" class="form-control" name="stock" id="stock">
             </div>
             <div class="mb-3">
-                <label for="status" class="form-label">Estado del Producto</label>
-                <select aria-valuemax="" class="form-select form-select" name="status" id="status">
+                <label for="activo" class="form-label">Estado del Producto</label>
+                <select aria-valuemax="" class="form-select form-select" name="activo" id="activo">
                     <option value="1" <?php echo ($registro["lActivo"] == 1) ? 'selected' : ''; ?>>Activado</option>
                     <option value="0" <?php echo ($registro["lActivo"] == 0) ? 'selected' : ''; ?>>Desactivado</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="departamento" class="form-label">Departamento</label>
-                <select name='departamento' class="form-select form-select" id="departamentos">
+                <select name='departamento' class="form-select form-select" id="departamento">
                     <option value='<?php echo $IDDepartamento; ?>'><?php echo $nombre_departamento; ?></option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="foto_producto" class="form-label">Foto del Producto</label>
                 <br>
-                <img src="<?php echo $fotoproducto; ?>" width="300px" height="300px" alt="Foto del Producto">
+                <input type="file" accept="image/*" onchange="handleImageChange(event)" id="foto_producto" name="foto_producto" class="form-control">
+                <br>
+                <img id="preview" src="<?php echo $fotoproducto; ?>" width="300px" height="300px" alt="Foto del Producto">
             </div>
 
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a class="btn btn-primary" href="index.php" role="button">Cancelar</a>
         </form>
     </div>
 </div>
 <script>
-    const handleImageChance = () => {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-
-        reader.onload = () => {
-          $fotoproducto: reader.result;
-        };
-
-        if(file){
-            reader.readAsDataURL(file);
-        }
-    }
+    
 </script>
 <?php include("../../layout/foot.php"); ?>
