@@ -65,7 +65,7 @@
             Reportes
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/CatalogoProducts">Productos</a></li>
+            <li><a class="dropdown-item" href="<?php echo $url_base?>modulos/reportes/CatalogoProductos.php">Catalogo de Productos</a></li>
             <li><a class="dropdown-item" href="#action/3.2">Another action</a></li>
             <li><a class="dropdown-item" href="#action/3.3">Something</a></li>
             <li><hr class="dropdown-divider"></li>
