@@ -11,7 +11,10 @@ D.NombreDepartamento
 FROM 
 Productos P
 INNER JOIN 
-Departamentos D ON P.IDDepartamento = D.IDDepartamento;";
+Departamentos D ON P.IDDepartamento = D.IDDepartamento
+WHERE
+P.Descripcion <> 'BAJA';
+;";
 $result = $link->query($sql);
 ?>
 <?php
@@ -37,3 +40,17 @@ if ($result->num_rows > 0) {
 } else {
     $Resultado .= "<tr><td colspan='3'>No se encontraron registros.</td></tr>";
 } ?>
+<script>
+    function borrar(id, nombre) {
+        Swal.fire({
+            title: "¿Deseas borrar al usuario '" + nombre + "'?",
+            showCancelButton: true,
+            confirmButtonText: "Si"
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                window.location = "index.php?txtID=" + id;
+            }
+        });
+    }
+</script>

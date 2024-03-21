@@ -2,7 +2,7 @@
 <div class="container mt-3">
     <div class="card">
         <div class="card-header">
-            <h3 className="d-flex justify-content-center">Nuevo Usuario</h3>
+            <h3 class="d-flex justify-content-center">Nuevo Usuario</h3>
         </div>
         <div class="card-body">
             <form action="" method="post" id="formUsuario">
@@ -33,50 +33,5 @@
         </div>
     </div>
 </div>
-<script>
-    document.getElementById("formUsuario").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const usuario = document.getElementById("usuario").value;
-        const nombre = document.getElementById("nombre").value;
-        const password = document.getElementById("password").value;
-        const tipo = document.getElementById("tipo").value;
 
-        if (!usuario || !nombre || !password || !tipo) {
-            alert("Por favor complete todos los campos.");
-            return;
-        }
-
-        const valores = {
-            usuario,
-            nombre,
-            password,
-            tipo
-        };
-        const URL = "../../Controllers/AltaUsuario.php";
-
-        axios.post(URL, valores, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then((response) => {
-                if (response.data.Resultado === "ok") {
-                    Swal.fire({
-                        title: "<strong>Registro Exitoso</strong>",
-                        html: `<i>El usuario <strong>${nombre}</strong> fue registrado con éxito</i>`,
-                        icon: "success",
-                        showCancelButton: false,
-                        confirmButtonText: "OK",
-                    }).then(() => {
-                        window.location.href = "../../Modulos/Usuarios/index.php";
-                    });
-                } else {
-                    alert("ERROR!!!");
-                }
-            })
-            .catch((error) => {
-                alert("Error: " + error.message);
-            });
-    });
-</script>
 <?php include("../../layout/foot.php"); ?>

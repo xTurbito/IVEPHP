@@ -1,5 +1,8 @@
 <?php
 require("../../config/dbcontext.php");
+
+include("../../Controllers/BorrarProducto.php"); 
+
 //NAVBAR
 include("../../layout/top.php")
 ?>

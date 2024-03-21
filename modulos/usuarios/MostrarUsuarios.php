@@ -17,8 +17,8 @@ if ($result->num_rows > 0) {
 } else {
     $Resultado .= "<tr><td colspan='3'>No se encontraron registros.</td></tr>";
 } ?>
-
 <script>
+  //Borrar el usuario
   function borrar(id, nombre){
     Swal.fire({
   title: "¿Deseas borrar al usuario '" + nombre + "'?",

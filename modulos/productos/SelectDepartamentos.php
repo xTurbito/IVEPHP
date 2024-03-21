@@ -12,7 +12,7 @@ $result = $link->query($sql);
     <?php
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $idDepartamento = $row["idDepartamento"];
+            $idDepartamento = $row["IDDepartamento"];
             $nombreDepartamento = $row["NombreDepartamento"];
             ?>
             <option value='<?php echo $idDepartamento; ?>'><?php echo $nombreDepartamento; ?></option>
