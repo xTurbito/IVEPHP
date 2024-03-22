@@ -6,30 +6,33 @@ if(formCatalogoProductos){
         const departamento = document.getElementById("departamento").value;
         const precio = document.getElementById("precio").value;
         const activo = document.getElementById("activo").value;
+        
 
         const valores = {
             departamento,
             precio,
             activo
+            
         };
 
         const URL = "http://localhost/FPDF/CatalogoProductos.php";  
 
         axios.post(URL, valores, {
-            responseType: 'blob', // Especificamos que esperamos una respuesta en formato blob (archivo)
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((response) => {
-            const blob = new Blob([response.data], { type: 'application/pdf' });
-            const url = window.URL.createObjectURL(blob);
-            
-            // Abrir el PDF en una nueva ventana
-            window.open(url, '_blank');
-        })
-        .catch((error) => {
-            alert("Error: " + error.message);
-        });
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                console.log(response.data); // Imprimir la respuesta en la consola
+                if (response.data.Resultado === "ok") {
+                   alert("Llegó la información correctamente")
+                } else {
+                    alert("ERROR!!!");
+                }
+            })
+            .catch((error) => {
+                console.error("Error: " + error.message); // Imprimir el mensaje de error en la consola
+                alert("Error: " + error.message);
+            });
     })
 }

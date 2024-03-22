@@ -12,6 +12,7 @@
 <script src="http://localhost/ivephp/Assets/funcionesProductos.js"></script>
 <script src="http://localhost/ivephp/Assets/funcionesUsuarios.js"></script>
 <script src="http://localhost/ivephp/Assets/funcionesDepartamentos.js"></script>
+<script src="http://localhost/ivephp/Assets/funcionesReportes.js"></script>
 
 <script>
   $(document).ready(function() {
