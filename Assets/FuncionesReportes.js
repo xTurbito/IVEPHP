@@ -1,5 +1,3 @@
-//Reporte para catalogo de productos
-
 const formCatalogoProductos = document.getElementById("formCatalogoProductos");
 if(formCatalogoProductos){
     formCatalogoProductos.addEventListener("submit", (e) => {
@@ -18,24 +16,17 @@ if(formCatalogoProductos){
         const URL = "http://localhost/FPDF/CatalogoProductos.php";  
 
         axios.post(URL, valores, {
+            responseType: 'blob', // Especificamos que esperamos una respuesta en formato blob (archivo)
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then((response) => {
-            if (response.data.Resultado === "ok") {
-                Swal.fire({
-                    title: "<strong>Registro Exitoso</strong>",
-                    html: `<i>El usuario <strong>${nombre}</strong> fue registrado con éxito</i>`,
-                    icon: "success",
-                    showCancelButton: false,
-                    confirmButtonText: "OK",
-                }).then(() => {
-                    window.location.href = "../../Modulos/Usuarios/index.php";
-                });
-            } else {
-                alert("ERROR!!!");
-            }
+            const blob = new Blob([response.data], { type: 'application/pdf' });
+            const url = window.URL.createObjectURL(blob);
+            
+            // Abrir el PDF en una nueva ventana
+            window.open(url, '_blank');
         })
         .catch((error) => {
             alert("Error: " + error.message);

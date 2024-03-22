@@ -1,25 +1,36 @@
 <?php
-	include('fpdf.php');
-	include('HeaderFooter.php');
+require('fpdf.php');
 
+function generarPDF($result) {
+    // Crear el objeto PDF
+    $pdf = new FPDF();
+    $pdf->AddPage();
 
-	$Altura = "9";
-	$id = 10;
-	$PalabraSecreta = "UppSh@rkT@nkSISDIST-".$id;
-	
-	$ClaveMD5 = md5($PalabraSecreta);
+    // Iterar sobre los resultados de la consulta
+    while ($fila = mysqli_fetch_assoc($result)) {
+        // Mostrar datos del producto
+        $nombre = $fila['nombre'];
+        $precio = $fila['precio'];
+        // Puedes agregar más datos según sea necesario
 
-	$pdf = new PDF();
-	$pdf->AliasNbPages();
-	$pdf->AddPage();
-	$pdf->SetFont('Arial','B',16);
-	$pdf->Ln(10);
-	// $pdf->Cell(40,10,'�Hola, Mundo!');
-	// $pdf->Cell(95,95,'ID',1,0,"C");
-	$pdf->Cell(95,85,$pdf->Image("http://localhost/FPDF/logo.png",$pdf->GetX()+16,$pdf->GetY(),55,0,'','http://www.google.com?COD='.$ClaveMD5).
-	$pdf->Text($pdf->GetX()+5,$pdf->GetY()+65,"Nombre: Producto Elefante").
-	$pdf->Text($pdf->GetX()+5,$pdf->GetY()+70,"Precio: $200")
-	, 1,0, 'J', false );
+        // Agregar nombre y precio al PDF
+        $pdf->Cell(0, 10, "Nombre: $nombre, Precio: $precio", 0, 1);
 
-	$pdf->Output();
+        // Mostrar la imagen codificada en base64
+        $imagen_base64 = $fila['imagen_base64'];
+        if (!empty($imagen_base64)) {
+            // Convertir la imagen codificada en base64 a una imagen (en este caso, asumiendo que es un JPEG)
+            $imagen = base64_decode($imagen_base64);
+
+            // Agregar la imagen al PDF
+            $pdf->Image('@' . $imagen, 10, $pdf->GetY() + 10, 50, 50);
+        }
+
+        // Agregar un salto de línea
+        $pdf->Ln();
+    }
+
+    // Salida del PDF
+    return $pdf; // Devuelve el objeto PDF para su uso posterior
+}
 ?>
