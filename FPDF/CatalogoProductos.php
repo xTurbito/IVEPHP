@@ -55,16 +55,15 @@ if(isset($datos["departamento"], $datos["precio"], $datos["activo"])) {
             $descripcion = $row['Descripcion'];
             $stock = $row['Stock'];
             $precio = $row['precio_venta'];
-            
-
+            $foto = "../../images/" . $row['fotoproducto'];
+        
+            // Agregar la imagen al PDF
+            $pdf->Image($foto, 10, 30, 50); // Ajusta las coordenadas y el tamaño según sea necesario
             $pdf->Ln(60); 
             $pdf->Cell(0, 10, "Nombre: $nombre", 0, 1, 'C');
             $pdf->Cell(0, 10, "Descripcion: $descripcion", 0, 1, 'C');
             $pdf->Cell(0, 10, "Stock: $stock", 0, 1, 'C');
             $pdf->Cell(0, 10, "Precio: $precio", 0, 1, 'C');
-    
-
-       
             $pdf->Ln();
         }
 

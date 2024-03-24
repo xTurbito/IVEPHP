@@ -1,49 +1,45 @@
 //Funcion para la alta de Usuario
-    const formUsuario = document.getElementById("formUsuario");
-    if (formUsuario) {
-        formUsuario.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const usuario = document.getElementById("usuario").value;
-            const nombre = document.getElementById("nombre").value;
-            const password = document.getElementById("password").value;
-            const tipo = document.getElementById("tipo").value;
+const formUsuario = document.querySelector("#formUsuario")
+if(formUsuario){
+    formUsuario.addEventListener('submit', e => {
+        e.preventDefault()
+        const data = Object.fromEntries(
+            new FormData(e.target)
+        )
+        let URL = "../../Controllers/AltaUsuario.php";
 
-            
-
-            const valores = {
-                usuario,
-                nombre,
-                password,
-                tipo
-            };
-            const URL = "../../Controllers/AltaUsuario.php";
-
-            axios.post(URL, valores, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then((response) => {
-                    if (response.data.Resultado === "ok") {
-                        Swal.fire({
-                            title: "<strong>Registro Exitoso</strong>",
-                            html: `<i>El usuario <strong>${nombre}</strong> fue registrado con éxito</i>`,
-                            icon: "success",
-                            showCancelButton: false,
-                            confirmButtonText: "OK",
-                        }).then(() => {
-                            window.location.href = "../../Modulos/Usuarios/index.php";
-                        });
-                    } else {
-                        alert("ERROR!!!");
-                    }
-                })
-                .catch((error) => {
-                    alert("Error: " + error.message);
+        axios.post(URL, data,{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(function(response){
+            if(response.data.Resultado == "ok"){
+                Swal.fire({
+                    title: "<strong>Registro Exitoso</strong>",
+                    html: "<i>El Departamento <strong>" +
+                        data.nombre +
+                        "</strong> fue creado con éxito</i>",
+                    icon: "success",
+                    showCancelButton: false,
+                    confirmButtonText: "OK",
+                }).then(function() {
+                    window.location.href = "../../Modulos/usuarios/index.php";
                 });
+            }else {
+                alert("ERROR!!!");
+            }
+        })
+        .catch(function(error) {
+            alert("Error: " + error.message);
         });
-    }
+    })
+}
 
+
+
+
+    
 
 //Funcion para editar al Usuario
     const formEditarUsuario = document.getElementById("formEditarUsuario");

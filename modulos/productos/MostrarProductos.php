@@ -1,4 +1,6 @@
 <?php
+require("../../config/dbcontext.php");
+
 $sql = "SELECT 
 P.IDProducto,
 P.Nombre,
@@ -7,14 +9,14 @@ P.precio_venta,
 P.Stock,
 P.lActivo,
 P.IDDepartamento,
+P.fotoproducto,
 D.NombreDepartamento
 FROM 
 Productos P
 INNER JOIN 
 Departamentos D ON P.IDDepartamento = D.IDDepartamento
 WHERE
-P.Descripcion <> 'BAJA';
-;";
+P.Descripcion <> 'BAJA';";
 $result = $link->query($sql);
 ?>
 <?php
@@ -23,13 +25,16 @@ if ($result->num_rows > 0) {
         <tr>
             <td scope="row"><?php echo $row['Nombre'] ?></td>
             <td scope="row"><?php echo $row['Descripcion'] ?></td>
+            <td>
+                <img width="50" src="../../images/<?php echo $row['fotoproducto']?>">
+            </td>
             <td><?php echo $row['precio_venta'] ?></td>
             <td><?php echo $row['Stock'] ?></td>
             <td><?php echo $row['NombreDepartamento'] ?></td>
             <th><?php echo ($row['lActivo'] == 1) ? 'Activado' : 'Desactivado'; ?></th>
             <td><a name="btnEditarProducto" id="btnEditarProducto" class="btn btn-info" href="EditarProducto.php?txtID=<?php echo $row['IDProducto']; ?>" role="button"><i class="fa-regular fa-pen-to-square"></i></a>
                 |
-                <a class="btn btn-danger" href="javascript:void(0);" onclick="borrar(<?php echo $row['IDProducto']; ?>, '<?php echo $row['Nombre']; ?>')" role="button">
+                <a class="btn btn-danger" href="../../Controllers/BorrarProducto.php?txtID=<?php echo $row['IDProducto']; ?>" role="button">
                     <i class="fa-solid fa-trash"></i>
                 </a>
 
@@ -38,19 +43,6 @@ if ($result->num_rows > 0) {
 <?php
     }
 } else {
-    $Resultado .= "<tr><td colspan='3'>No se encontraron registros.</td></tr>";
+    echo "<tr><td colspan='8'>No se encontraron registros.</td></tr>";
 } ?>
-<script>
-    function borrar(id, nombre) {
-        Swal.fire({
-            title: "¿Deseas borrar al usuario '" + nombre + "'?",
-            showCancelButton: true,
-            confirmButtonText: "Si"
-        }).then((result) => {
 
-            if (result.isConfirmed) {
-                window.location = "index.php?txtID=" + id;
-            }
-        });
-    }
-</script>

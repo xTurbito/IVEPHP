@@ -5,7 +5,7 @@
             <h3 class="d-flex justify-content-center">Nuevo Producto</h3>
         </div>
         <div class="card-body">
-            <form action="" method="post" id="formProducto">
+            <form  method="post" id="formProducto" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del Producto" required>
@@ -29,11 +29,15 @@
                <?php include("./SelectDepartamentos.php") ?>
                 <div class="mb-3">
                     <label for="status" class="form-label">Estado del Producto</label>
-                    <select aria-valuemax="" class="form-select form-select" name="activo" id="activo">
+                    <select aria-valuemax="" class="form-select form-select" name="activo" id="activo" required>
                         <option value="1">Activado</option>
                         <option value="0">Desactivado</option>
                     </select>
                 </div>
+               <div class="mb-3">
+                    <label for="fotoproducto" class="form-label">Imagen del Producto</label>
+                    <input type="file" class="form-control" id="fotoproducto" name="fotoproducto" required>
+               </div>
 
                 <button type="submit" class="btn btn-success">Guardar</button>
                 <a class="btn btn-primary" href="index.php" role="button">Cancelar</a>

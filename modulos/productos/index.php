@@ -1,8 +1,4 @@
 <?php
-require("../../config/dbcontext.php");
-
-include("../../Controllers/BorrarProducto.php"); 
-
 //NAVBAR
 include("../../layout/top.php")
 ?>
@@ -17,7 +13,8 @@ include("../../layout/top.php")
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
+                        <th scope="col">Descripcion</th> 
+                        <th scope="col">fotoproducto</th> 
                         <th scope="col">Precio</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Departamento</th>

@@ -13,7 +13,7 @@ if (formCatalogoProductos) {
             activo
         };
 
-        const URL = "http://localhost/FPDF/CatalogoProductos.php";
+        const URL = "../../FPDF/CatalogoProductos.php";
 
         axios.post(URL, valores, {
                 headers: {

@@ -1,76 +1,37 @@
-// Variable global para almacenar el valor base64 de la imagen
-let fotoproductoBase64 = '<?php echo $fotoproducto; ?>';
-
-// Función para manejar el cambio de la imagen
-function handleImageChange(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-        const preview = document.getElementById('preview');
-        preview.src = reader.result;
-        // Actualizar la variable global con el nuevo valor base64 de la imagen
-        fotoproductoBase64 = reader.result;
-    };
-
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-}
-
-
-//Alta del producto
-const formProducto = document.getElementById("formProducto");
+const formProducto = document.querySelector("#formProducto");
 if (formProducto) {
   formProducto.addEventListener("submit", (e) => {
     e.preventDefault();
+    const data = new FormData(e.target); 
 
-    const nombre = document.getElementById("nombre").value;
-    const descripcion = document.getElementById("descripcion").value;
-    const precio_costo = document.getElementById("precio_costo").value;
-    const precio_venta = document.getElementById("precio_venta").value;
-    const stock = document.getElementById("stock").value;
-    const activo = document.getElementById("activo").value;
-    const departamento = document.getElementById("departamento").value;
+    let URL = "../../Controllers/AltaProducto.php";
 
-    let valores = {
-      nombre,
-      descripcion,
-      precio_costo,
-      precio_venta,
-      stock,
-      activo,
-      departamento,
-    };
-
-    const URL = "../../Controllers/AltaProducto.php";
-
-    axios
-      .post(URL, valores, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.data.Resultado === "ok") {
+    axios.post(URL, data)
+      .then(function (response) {
+        if (response.data.Resultado == "ok") {
           Swal.fire({
             title: "<strong>Registro Exitoso</strong>",
-            html: `<i>El Producto <strong>${nombre}</strong> fue registrado con éxito</i>`,
+            html:
+              "<i>El Producto <strong>" +
+              data.get('nombre') + 
+              "</strong> fue creado con éxito</i>",
             icon: "success",
             showCancelButton: false,
             confirmButtonText: "OK",
-          }).then(() => {
-            window.location.href = "../../Modulos/Productos/index.php";
+          }).then(function () {
+            window.location.href = "../../Modulos/productos/index.php";
           });
         } else {
           alert("ERROR!!!");
         }
       })
-      .catch((error) => {
+      .catch(function (error) {
         alert("Error: " + error.message);
       });
   });
 }
+
+
 
 // Función para editar el producto
 const formEditarProducto = document.getElementById("formEditarProducto");
