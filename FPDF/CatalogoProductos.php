@@ -30,7 +30,7 @@ if(isset($datos["departamento"], $datos["precio"], $datos["activo"])) {
             break;
     }
 
-    $sql = "SELECT Nombre, Descripcion, precio_venta, Stock, fotoproducto FROM productos WHERE IDDepartamento = ? AND precio_venta BETWEEN ? AND ? AND lActivo = ?";
+    $sql = "SELECT Nombre, Descripcion, precio_venta, Stock FROM productos WHERE IDDepartamento = ? AND precio_venta BETWEEN ? AND ? AND lActivo = ?";
     
     $stmt = mysqli_prepare($link, $sql);
 
@@ -55,10 +55,9 @@ if(isset($datos["departamento"], $datos["precio"], $datos["activo"])) {
             $descripcion = $row['Descripcion'];
             $stock = $row['Stock'];
             $precio = $row['precio_venta'];
-            $foto = "../../images/" . $row['fotoproducto'];
         
             // Agregar la imagen al PDF
-            $pdf->Image($foto, 10, 30, 50); // Ajusta las coordenadas y el tamaño según sea necesario
+     // Ajusta las coordenadas y el tamaño según sea necesario
             $pdf->Ln(60); 
             $pdf->Cell(0, 10, "Nombre: $nombre", 0, 1, 'C');
             $pdf->Cell(0, 10, "Descripcion: $descripcion", 0, 1, 'C');

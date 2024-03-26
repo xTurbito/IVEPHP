@@ -7,9 +7,10 @@ if ($result->num_rows > 0) {
             <td><?php echo $row['nombre'] ?></td>
             <td><?php echo ($row['tipo_usuclave'] == 1) ? 'Administrador' : 'Usuario'; ?></td>
             <th><?php echo ($row['lactivo'] == 1) ? 'Activado' : 'Desactivado'; ?></th>
-            <td> <a name="btneditar" id="btneditar" class="btn btn-info" href="EditarUsuario.php?txtID=<?php echo $row['idusuario']; ?>" role="button"><i class="fa-regular fa-pen-to-square"></i></a>
-                |
-                <a class="btn btn-danger" href="javascript:void(0);" onclick="borrar(<?php echo $row['idusuario']; ?>, '<?php echo $row['nombre']; ?>')" role="button"><i class="fa-solid fa-trash"></i></a>
+            <td>
+              <a name="btneditar" id="btneditar" class="btn edit" href="EditarUsuario.php?txtID=<?php echo $row['idusuario']; ?>" role="button"><i class="fa-regular fa-pen-to-square"></i></a>
+              <span>|</span>
+              <a class="btn delete" href="javascript:void(0);" onclick="borrar(<?php echo $row['idusuario']; ?>, '<?php echo $row['nombre']; ?>')" role="button"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
 <?php
