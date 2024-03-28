@@ -32,19 +32,19 @@ $url_base = "http://localhost/ivephp/";
                         Modulos
                     </li>
                     <li class="sidebar-item">
-                        <a href="<?php echo $url_base ?>/" class="sidebar-link">
+                        <a href="<?php echo $url_base?>/" class="sidebar-link">
                             <i class="fa-solid fa-house pe-2"></i>
                             Inicio
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="<?php echo $url_base ?>modulos/usuarios/" class="sidebar-link">
+                        <a href="<?php echo $url_base?>modulos/usuarios/" class="sidebar-link">
                             <i class="fa-solid fa-user pe-2"></i>
                             Usuarios
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="<?php echo $url_base ?>modulos/productos/" class="sidebar-link">
+                        <a href="<?php echo $url_base?>modulos/productos/" class="sidebar-link">
                             <i class="fa-solid fa-bag-shopping pe-2"></i>
                             Productos
                         </a>
