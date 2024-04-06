@@ -5,8 +5,8 @@ require('./fpdf.php');
 $json = file_get_contents("php://input");
 $datos = json_decode($json, true);
 
-if(isset($datos["departamento"], $datos["precio"], $datos["activo"])) {
-    
+if (isset($datos["departamento"], $datos["precio"], $datos["activo"])) {
+
     $departamento = $datos["departamento"];
     $precio = $datos["precio"];
     $activo = $datos["activo"];
@@ -22,7 +22,7 @@ if(isset($datos["departamento"], $datos["precio"], $datos["activo"])) {
             break;
         case 'mas_de_1000':
             $precio_min = 1000;
-            $precio_max = 99999999; 
+            $precio_max = 99999999;
             break;
         default:
             $precio_min = 0;
@@ -30,18 +30,20 @@ if(isset($datos["departamento"], $datos["precio"], $datos["activo"])) {
             break;
     }
 
-    $sql = "SELECT Nombre, Descripcion, precio_venta, Stock FROM productos WHERE IDDepartamento = ? AND precio_venta BETWEEN ? AND ? AND lActivo = ?";
-    
+    $sql = "SELECT Nombre, Descripcion, precio_venta, Stock, fotoproducto FROM productos WHERE IDDepartamento = ? AND precio_venta BETWEEN ? AND ? AND lActivo = ?";
+
     $stmt = mysqli_prepare($link, $sql);
+
+    $directorio_imagenes = "../images/";
 
     if ($stmt) {
 
         mysqli_stmt_bind_param($stmt, "iiis", $departamento, $precio_min, $precio_max, $activo);
-        
-    
+
+
         mysqli_stmt_execute($stmt);
-        
-     
+
+
         $resultado = mysqli_stmt_get_result($stmt);
 
         $pdf = new FPDF();
@@ -55,27 +57,35 @@ if(isset($datos["departamento"], $datos["precio"], $datos["activo"])) {
             $descripcion = $row['Descripcion'];
             $stock = $row['Stock'];
             $precio = $row['precio_venta'];
-        
-            // Agregar la imagen al PDF
-     // Ajusta las coordenadas y el tamaño según sea necesario
-            $pdf->Ln(60); 
-            $pdf->Cell(0, 10, "Nombre: $nombre", 0, 1, 'C');
-            $pdf->Cell(0, 10, "Descripcion: $descripcion", 0, 1, 'C');
-            $pdf->Cell(0, 10, "Stock: $stock", 0, 1, 'C');
-            $pdf->Cell(0, 10, "Precio: $precio", 0, 1, 'C');
-            $pdf->Ln();
+            $foto = $directorio_imagenes . $row['fotoproducto'];
+
+            $ancho = $pdf->GetPageWidth() - 130; 
+            $altura = 100; 
+            $y = $pdf->GetY(); 
+            $pdf->Rect(10, $y, $ancho, $altura); 
+            $pdf->Image($foto, 20, $y + 10, 60, 40);
+            $pdf->SetY($y + 50); 
+            $pdf->SetFont('Arial', '', 15); 
+            $pdf->SetX(5); 
+            $pdf->Cell(100, 10, "Nombre: $nombre", 0, 1, 'C');
+            $pdf->SetX(3); 
+            $pdf->Cell(100, 10, "Descripcion: $descripcion", 0, 1, 'C'); 
+            $pdf->SetX(5);
+            $pdf->Cell(100, 10, "Stock: $stock", 0, 1, 'C');
+            $pdf->SetX(5);
+            $pdf->Cell(100, 10, "Precio: $precio", 0, 1, 'C'); 
+            $pdf->Ln(10);
         }
 
-      
-        $pdf->Output("D", "catalogo_productos.pdf");
 
+        $pdf->Output("D", "catalogo_productos.pdf");
     } else {
         die("Error en la preparación de la consulta: " . mysqli_error($link));
     }
 
 
     mysqli_stmt_close($stmt);
-    
+
     exit;
 }
 ?>

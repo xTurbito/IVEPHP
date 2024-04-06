@@ -58,8 +58,7 @@ if (formEditarProducto) {
             precio_venta,
             stock,
             activo,
-            departamento,
-            fotoproductoBase64 // Incluir el valor base64 de la imagen en los datos del formulario
+            departamento
         };
 
         // URL de la petición AJAX

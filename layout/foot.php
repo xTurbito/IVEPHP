@@ -14,11 +14,11 @@
 
 <!-- FUNCIONES  -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="http://localhost/ivephp/layout/script.js"></script>
-<script src="http://localhost/ivephp/Assets/funcionesProductos.js"></script>
-<script src="http://localhost/ivephp/Assets/funcionesUsuarios.js"></script>
-<script src="http://localhost/ivephp/Assets/funcionesDepartamentos.js"></script>
-<script src="http://localhost/ivephp/Assets/funcionesReportes.js"></script>
+<script src="http://localhost/SistemaVentasPHP/layout/script.js"></script>
+<script src="http://localhost/SistemaVentasPHP/Assets/funcionesProductos.js"></script>
+<script src="http://localhost/SistemaVentasPHP/Assets/funcionesUsuarios.js"></script>
+<script src="http://localhost/SistemaVentasPHP/Assets/funcionesDepartamentos.js"></script>
+<script src="http://localhost/SistemaVentasPHP/Assets/funcionesReportes.js"></script>
 
 <script>
     $(document).ready(function() {
