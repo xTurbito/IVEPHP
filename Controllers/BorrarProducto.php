@@ -14,14 +14,13 @@ if (isset($_GET['txtID'])) {
 
 
     if(isset($registro_recuperado["fotoproducto"]) && $registro_recuperado["fotoproducto"]!=""){
-        if(file_exists("./".$registro_recuperado["fotoproducto"])){
-            unlink("./".$registro_recuperado["fotoproducto"]);
+        if(file_exists("../images/".$registro_recuperado["fotoproducto"])){
+            unlink("../images/".$registro_recuperado["fotoproducto"]);
         }
     }
 
     $query = $link->prepare("DELETE FROM productos WHERE IDProducto = ? ");
-    $query->bind_param("s", $txtID);
-    $query-> execute();
+    $query->bind_param("s", $txtID);    $query-> execute();
     header("Location:../modulos/productos/index.php");
 }
 ?>
