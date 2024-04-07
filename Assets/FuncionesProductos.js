@@ -37,8 +37,9 @@ const formEditarProducto = document.querySelector("#formEditarProducto");
 if(formEditarProducto){
   formEditarProducto.addEventListener("submit", (e) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target));
-    alert(JSON.stringify(data));  
+    const data = new FormData(e.target); 
+    
+    
 
     let URL = "../../Models/EditarProducto.php";
 
@@ -49,8 +50,8 @@ if(formEditarProducto){
             title: "<strong>Registro Exitoso</strong>",
             html:
               "<i>El Producto <strong>" +
-              data.nombre + 
-              "</strong> fue actualizado con éxito</i>",
+              data.get('nombre') + 
+              "</strong> fue creado con éxito</i>",
             icon: "success",
             showCancelButton: false,
             confirmButtonText: "OK",

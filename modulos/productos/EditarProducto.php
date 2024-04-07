@@ -38,7 +38,7 @@ if (isset($_GET['txtID'])) {
         Datos del Producto
     </div>
     <div class="card-body">
-        <form method="post" id="formEditarProducto">
+        <form method="post" id="formEditarProducto" enctype="multipart/form-data" >
             <div class="mb-3">
                 <input type="hidden" value="<?php echo $txtID; ?>" class="form-control" name="id" id="id">
             </div>
@@ -89,7 +89,7 @@ if (isset($_GET['txtID'])) {
                 <br>
                 <img src="../../images/<?php echo $fotoproducto?>" alt="" width="100">
                 <br>
-                <input type="file" id="foto_producto" name="foto_producto" class="form-control">
+                <input type="file" id="foto_producto" name="fotoproducto" class="form-control">
                 <br>
 
             </div>

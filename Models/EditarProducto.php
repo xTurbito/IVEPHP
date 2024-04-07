@@ -1,35 +1,32 @@
 <?php
 require_once "../config/dbcontext.php";
 
-$json = file_get_contents("php://input");
-$datos = json_decode($json, true);
+$id = $_POST["id"];
+$nombre = $_POST["nombre"];
+$precio_costo = $_POST["precio_costo"];
+$precio_venta = $_POST["precio_venta"];
+$descripcion = $_POST["descripcion"];
+$stock = $_POST["stock"];
+$lActivo = $_POST["activo"];
+$Departamento = $_POST["departamento"];
+$fotoproducto = $_FILES["fotoproducto"]["name"];
 
-$Resultado = "No se ha ejecutado ninguna operación";  // Inicializa $Resultado
+$sql = "UPDATE productos SET nombre = ?, descripcion = ?, precio_venta = ?, stock = ?, lActivo = ?, precio_costo = ?, IDDepartamento = ? WHERE IDProducto = ?";
+$stmt = mysqli_prepare($link, $sql);
+mysqli_stmt_bind_param($stmt, "ssiddidi", $nombre, $descripcion, $precio_venta, $stock, $lActivo, $precio_costo, $Departamento, $id);
 
-if (isset($datos["id"], $datos["nombre"], $datos["precio_costo"], $datos["descripcion"], $datos["stock"], $datos["activo"], $datos["precio_venta"], $datos["departamento"] )) {
-
-    $id = $datos["id"];
-    $nombre = $datos["nombre"];
-    $precio_costo = $datos["precio_costo"];
-    $precio_venta = $datos["precio_venta"];
-    $descripcion = $datos["descripcion"];
-    $stock = $datos["stock"];
-    $lActivo = $datos["activo"];
-    $departamento = $datos["departamento"];
-    
-
-    $sql = "UPDATE productos SET nombre = ?, descripcion = ?, precio_venta = ?, stock = ?, lActivo = ?, precio_costo = ?, IDDepartamento = ? WHERE IDProducto = ?";
-    $stmt = mysqli_prepare($link, $sql);
-
-    mysqli_stmt_bind_param($stmt, "ssiddiii", $nombre, $descripcion, $precio_venta, $stock, $lActivo, $precio_costo, $departamento, $id);
-
-    if (mysqli_stmt_execute($stmt)) {
-        $Resultado = "ok";
-    } else {
-        $Resultado = "error: " . mysqli_stmt_error($stmt);
-    }
+// Ejecutamos la consulta
+if (mysqli_stmt_execute($stmt)) {
+    $Resultado = "ok";
+} else {
+    $Resultado = "error: " . mysqli_stmt_error($stmt);
 }
 
-echo '{"Resultado":"' . $Resultado . '"}';
 
+
+
+
+mysqli_stmt_close($stmt);
+
+echo '{"Resultado":"' . $Resultado . '"}';
 ?>
