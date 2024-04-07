@@ -13,6 +13,7 @@
 </script>
 
 <!-- FUNCIONES  -->
+<script src="http://localhost/SistemaVentasPHP/Assets/Funciones.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="http://localhost/SistemaVentasPHP/layout/script.js"></script>
 <script src="http://localhost/SistemaVentasPHP/Assets/funcionesProductos.js"></script>

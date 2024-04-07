@@ -9,8 +9,7 @@ $result = $link->query($sql);
 //NAVBAR
 include("../../layout/top.php") 
 ?>
-<br>
-<div class="card border-0">
+<div class="card border-0 mt-4">
   <div class="card-header">
     <a class="btn mt-2 mb-2 btn-hover-gray" href="AltaUsuario.php" role="button" style="color: #8000ff">Agregar Usuario <i class="fa-solid fa-plus"></i></a>
 

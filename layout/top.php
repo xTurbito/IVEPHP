@@ -17,6 +17,12 @@ $url_base = "http://localhost/SistemaVentasPHP/";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="http://localhost/SistemaVentasPHP/layout/style.css">
     <link rel="stylesheet" href="http://localhost/SistemaVentasPHP/layout/buttons.css">
+
+    <!--DATATABLES  -->
+    <link href="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
+
+
 </head>
 
 <body>
@@ -35,6 +41,12 @@ $url_base = "http://localhost/SistemaVentasPHP/";
                         <a href="<?php echo $url_base?>/" class="sidebar-link">
                             <i class="fa-solid fa-house pe-2"></i>
                             Inicio
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="<?php echo $url_base ?>modulos/Ventas/" class="sidebar-link">
+                        <i class="fa-solid fa-cash-register"></i>
+                            Venta
                         </a>
                     </li>
                     <li class="sidebar-item">
