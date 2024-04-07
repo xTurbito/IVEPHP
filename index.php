@@ -1,4 +1,7 @@
-<?php include("layout/top.php")?>
+<?php
+require("config/login.php");
+include("layout/top.php");
+?>
 <div class="container-fluid">
                     <div class="mb-3">
                         <h4>Panel de Inicio</h4>

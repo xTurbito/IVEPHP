@@ -1,7 +1,7 @@
 <?php
+require("../../config/login.php");
 require("../../config/dbcontext.php");
-
-include("../../Controllers/BorrarUsuario.php"); 
+include("../../Models/BorrarUsuario.php"); 
 
 $sql = "SELECT * FROM usuarios where usuario <> 'BAJA'";
 $result = $link->query($sql);
@@ -34,5 +34,5 @@ include("../../layout/top.php")
     </div>
   </div>
 </div>
-
+<script src="http://localhost/SistemaVentasPHP/Assets/Funciones.js"></script>
 <?php include("../../layout/foot.php"); ?>

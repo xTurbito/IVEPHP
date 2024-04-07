@@ -12,7 +12,7 @@ formDepartamento.addEventListener("submit", function(e) {
         status : status
     };
 
-    let URL =  "../../Controllers/AltaDepartamento.php";
+    let URL =  "../../Models/AltaDepartamento.php";
 
     axios.post(URL, valores, {
             headers: {
@@ -59,7 +59,7 @@ if(formEditarDepartamento){
         status : status
     };
 
-    let URL =  "../../Controllers/EditarDepartamento.php";
+    let URL =  "../../Models/EditarDepartamento.php";
 
     axios.post(URL, valores, {
             headers: {

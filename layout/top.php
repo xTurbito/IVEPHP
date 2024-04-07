@@ -1,7 +1,8 @@
 <?php
-
 $url_base = "http://localhost/SistemaVentasPHP/";
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
@@ -21,8 +22,9 @@ $url_base = "http://localhost/SistemaVentasPHP/";
     <!--DATATABLES  -->
     <link href="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-
+   
 </head>
 
 <body>
@@ -88,7 +90,7 @@ $url_base = "http://localhost/SistemaVentasPHP/";
             </div>
         </aside>
         <div class="main">
-            <nav class="navbar navbar-expand px-3 border-bottom">
+        <nav class="navbar navbar-expand px-3 border-bottom">
                 <button class="btn" id="sidebar-toggle" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -101,10 +103,21 @@ $url_base = "http://localhost/SistemaVentasPHP/";
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a href="#" class="dropdown-item">Profile</a>
                                 <a href="#" class="dropdown-item">Setting</a>
-                                <a href="#" class="dropdown-item">Logout</a>
+                                <a href="#" id="logout" class="dropdown-item">Logout</a>
                             </div>
                         </li>
                     </ul>
                 </div>
             </nav>
-            <main class="content px-3 py-2">
+<script>
+    document.getElementById('logout').addEventListener('click', function(e) {
+        e.preventDefault();
+    
+        fetch('http://localhost/SistemaVentasPHP/Models/CerrarSesion.php')
+        .then(response => response.json())
+        .then(data => {
+            window.location.href = 'http://localhost/SistemaVentasPHP/login.php';
+        })
+        .catch(error => console.log(error));
+    });
+</script>

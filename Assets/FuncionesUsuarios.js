@@ -6,7 +6,7 @@ if(formUsuario){
         const data = Object.fromEntries(
             new FormData(e.target)
         )
-        let URL = "../../Controllers/AltaUsuario.php";
+        let URL = "../../Models/AltaUsuario.php";
 
         axios.post(URL, data,{
             headers: {
@@ -17,7 +17,7 @@ if(formUsuario){
             if(response.data.Resultado == "ok"){
                 Swal.fire({
                     title: "<strong>Registro Exitoso</strong>",
-                    html: "<i>El Departamento <strong>" +
+                    html: "<i>El Usuario <strong>" +
                         data.nombre +
                         "</strong> fue creado con éxito</i>",
                     icon: "success",
@@ -63,7 +63,7 @@ if(formUsuario){
                 status: status
             };
 
-            let URL = "../../Controllers/EditarUsuario.php";
+            let URL = "../../Models/EditarUsuario.php";
 
             axios.post(URL, valores, {
                     headers: {

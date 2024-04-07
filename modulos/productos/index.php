@@ -1,5 +1,6 @@
 <?php
 //NAVBAR
+require("../../config/login.php");
 include("../../layout/top.php")
 ?>
 <br>
@@ -29,4 +30,5 @@ include("../../layout/top.php")
         </div>
     </div>
 </div>
+<script src="http://localhost/SistemaVentasPHP/Assets/Funciones.js"></script>
 <?php include("../../layout/foot.php"); ?>

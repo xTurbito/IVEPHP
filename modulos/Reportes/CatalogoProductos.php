@@ -1,4 +1,7 @@
-<?php include("../../layout/top.php") ?>
+<?php 
+require("../../config/login.php");
+include("../../layout/top.php") ?>
+
 <div class="container mt-3">
     <div class="card">
         <div class="card-header">
@@ -6,7 +9,7 @@
         </div>
         <div class="card-body">
             <form method="post" id="formCatalogoProductos">
-                <?php include("../productos/SelectDepartamentos.php") ?>
+                <?php include("../Reportes/SelectDepartamentos.php") ?>
                 <div class="mb-3">
                     <label for="precio" class="form-label">Rango de Precio</label><br>
                     <select id="precio" name="precio" class="form-select">

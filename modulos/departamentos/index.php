@@ -1,4 +1,5 @@
 <?php
+require("../../config/login.php");
 require("../../config/dbcontext.php");
 
 $sql = "SELECT * FROM departamentos";
@@ -31,5 +32,5 @@ include("../../layout/top.php")
     </div>
   </div>
 </div>
-
+<script src="http://localhost/SistemaVentasPHP/Assets/Funciones.js"></script>
 <?php include("../../layout/foot.php"); ?>

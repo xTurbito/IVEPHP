@@ -1,4 +1,5 @@
 <?php
+require("../../config/login.php");
 require("../../config/dbcontext.php");
 
 if (isset($_GET['txtID'])) {

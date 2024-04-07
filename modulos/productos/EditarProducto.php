@@ -1,4 +1,5 @@
 <?php
+require("../../config/login.php");
 require("../../config/dbcontext.php");
 
 if (isset($_GET['txtID'])) {
@@ -20,17 +21,11 @@ if (isset($_GET['txtID'])) {
         $fotoproducto = $registro["fotoproducto"];
 
         // Consulta para obtener el nombre del departamento
-        $query_departamento = $link->prepare("SELECT NombreDepartamento FROM Departamentos WHERE IDDepartamento = ?");
-        $query_departamento->bind_param("s", $IDDepartamento);
-        $query_departamento->execute();
-        $result_departamento = $query_departamento->get_result();
+        $query_todos_departamentos = $link->prepare("SELECT IDDepartamento,NombreDepartamento FROM Departamentos ");
+        $query_todos_departamentos->execute();
+        $result_todos_departamentos = $query_todos_departamentos->get_result();
 
-        if ($result_departamento->num_rows > 0) {
-            $registro_departamento = $result_departamento->fetch_assoc();
-            $nombre_departamento = $registro_departamento["NombreDepartamento"];
-        } else {
-            $nombre_departamento = "Departamento no encontrado";
-        }
+        
     } else {
         echo "NO SE ENCONTRARON REGISTROS";
     }
@@ -77,15 +72,26 @@ if (isset($_GET['txtID'])) {
             <div class="mb-3">
                 <label for="departamento" class="form-label">Departamento</label>
                 <select name='departamento' class="form-select form-select" id="departamento">
-                    <option value='<?php echo $IDDepartamento; ?>'><?php echo $nombre_departamento; ?></option>
+                    <?php
+                    // Bucle para generar las opciones del menú desplegable
+                    while ($row = $result_todos_departamentos->fetch_assoc()) {
+                        $IDDepartamento_actual = $row["IDDepartamento"];
+                        $nombre_departamento_actual = $row["NombreDepartamento"];
+                    ?>
+                        <option value='<?php echo $IDDepartamento_actual; ?>' <?php if ($IDDepartamento_actual == $IDDepartamento) echo 'selected'; ?>><?php echo $nombre_departamento_actual; ?></option>
+                    <?php
+                    }
+                    ?>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="foto_producto" class="form-label">Foto del Producto</label>
                 <br>
-                <input type="file" accept="image/*" onchange="handleImageChange(event)" id="foto_producto" name="foto_producto" class="form-control">
+                <img src="../../images/<?php echo $fotoproducto?>" alt="" width="100">
                 <br>
-                <img id="preview" src="<?php echo $fotoproducto; ?>" width="300px" height="300px" alt="Foto del Producto">
+                <input type="file" id="foto_producto" name="foto_producto" class="form-control">
+                <br>
+
             </div>
 
             <button type="submit" class="btn btn-success">Guardar</button>
@@ -94,6 +100,6 @@ if (isset($_GET['txtID'])) {
     </div>
 </div>
 <script>
-    
+
 </script>
 <?php include("../../layout/foot.php"); ?>

@@ -1,4 +1,5 @@
 <?php
+
 require("../../config/dbcontext.php");
 
 $sql = "SELECT 
@@ -34,7 +35,7 @@ if ($result->num_rows > 0) {
             <th><?php echo ($row['lActivo'] == 1) ? 'Activado' : 'Desactivado'; ?></th>
             <td><a name="btnEditarProducto" id="btnEditarProducto" class="btn edit" href="EditarProducto.php?txtID=<?php echo $row['IDProducto']; ?>" role="button"><i class="fa-regular fa-pen-to-square"></i></a>
                 |
-                <a class="btn delete" href="../../Controllers/BorrarProducto.php?txtID=<?php echo $row['IDProducto']; ?>" role="button">
+                <a class="btn delete" href="../../Models/BorrarProducto.php?txtID=<?php echo $row['IDProducto']; ?>" role="button">
                     <i class="fa-solid fa-trash"></i>
                 </a>
 
