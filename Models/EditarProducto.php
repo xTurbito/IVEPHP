@@ -22,9 +22,27 @@ if (mysqli_stmt_execute($stmt)) {
     $Resultado = "error: " . mysqli_stmt_error($stmt);
 }
 
+$fotoproducto=(isset($_FILES['fotoproducto']['name']))?$_FILES['fotoproducto']['name']:"";
+$fecha = new DateTime();
+$nombreArchivo_foto = ($fotoproducto != '') ? $fecha->getTimestamp()."_".$_FILES["fotoproducto"]["name"] : "";
+$tmp_fotoproducto = $_FILES["fotoproducto"]["tmp_name"];
 
-
-
+if ($tmp_fotoproducto != '') {
+    move_uploaded_file($tmp_fotoproducto,"../images/".$nombreArchivo_foto);
+    $query = $link->prepare("SELECT fotoproducto FROM productos WHERE IDProducto = ?");
+    $query->bind_param("s", $id);
+    $query->execute(); // Ejecutar la consulta
+    $resultado = $query->get_result(); // Obtener el resultado
+    $registro_recuperado = $resultado->fetch_assoc(); // Obtener el resultado como un array asociativo
+    if(isset($registro_recuperado["fotoproducto"]) && $registro_recuperado["fotoproducto"]!=""){
+        if(file_exists("../images/".$registro_recuperado["fotoproducto"])){
+            unlink("../images/".$registro_recuperado["fotoproducto"]);
+        }
+    }
+    $query = $link->prepare("UPDATE productos SET fotoproducto = ? WHERE IDProducto = ?");
+    $query->bind_param("si", $nombreArchivo_foto, $id);
+    $query->execute();
+}
 
 mysqli_stmt_close($stmt);
 
