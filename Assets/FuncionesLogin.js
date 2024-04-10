@@ -12,7 +12,7 @@ document.querySelector("#formLogin")
         return;
     }
 
-    let URL = "http://localhost/SistemaVentasPHP/Models/ValidarLogin.php";
+    let URL = "http://localhost/Models/ValidarLogin.php";
 
     axios.post(URL, data,{
         headers: {

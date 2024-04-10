@@ -1,6 +1,6 @@
 <?php
-require("config/login.php");
-include("layout/top.php");
+require("./config/Login.php");
+include("./layout/top.php");
 ?>
 <div class="container-fluid">
                     <div class="mb-3">
@@ -94,4 +94,4 @@ include("layout/top.php");
                     </div>
                 </div>
 
-<?php include("layout/foot.php")?>
+<?php include("./layout/foot.php")?>
