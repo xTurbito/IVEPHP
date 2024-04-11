@@ -6,6 +6,17 @@ if (formProducto) {
 
     let URL = "../../Models/AltaProducto.php";
 
+    for (let [key, value] of data.entries()) {
+      if (!value) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `El campo ${key} es requerido`,
+        });
+        return;
+      }
+    }
+
     axios.post(URL, data)
       .then(function (response) {
         if (response.data.Resultado == "ok") {
@@ -22,11 +33,19 @@ if (formProducto) {
             window.location.href = "../../Modulos/productos/index.php";
           });
         } else {
-          alert("ERROR!!!");
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal!',
+          });
         }
       })
       .catch(function (error) {
-        alert("Error: " + error.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Error: ' + error.message,
+        });
       });
   });
 }

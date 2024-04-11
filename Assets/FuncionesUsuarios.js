@@ -3,10 +3,21 @@ const formUsuario = document.querySelector("#formUsuario")
 if(formUsuario){
     formUsuario.addEventListener('submit', e => {
         e.preventDefault()
-        const data = Object.fromEntries(
-            new FormData(e.target)
-        )
+        const data = new FormData(e.target);
+
         let URL = "../../Models/AltaUsuario.php";
+
+        for (let [key, value] of data.entries()) {
+            if (!value) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `El campo ${key} es requerido`,
+                });
+                return;
+            }
+        }
+
 
         axios.post(URL, data,{
             headers: {
@@ -27,12 +38,20 @@ if(formUsuario){
                     window.location.href = "../../Modulos/usuarios/index.php";
                 });
             }else {
-                alert("ERROR!!!");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal!',
+                  });
             }
         })
-        .catch(function(error) {
-            alert("Error: " + error.message);
-        });
+        .catch(function (error) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Error: ' + error.message,
+            });
+          });
     })
 }
 

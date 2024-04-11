@@ -1,9 +1,12 @@
 <?php
-$server= "id22029402_ive";
-$user= "id22029402_malcocer";
-$pass = "Frida0208$";
-$db = "id22029402_malcocer";
+$server= "localhost";
+$user= "root";
+$pass = "";
+$db = "ive";
 $link = mysqli_connect($server, $user, $pass, $db);
 
-
+// Verificar la conexión
+if (!$link) {
+    die("Conexión fallida: " . mysqli_connect_error());
+}
 ?>
