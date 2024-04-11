@@ -20,7 +20,7 @@ $nombreArchivo_foto = ($fotoproducto != '') ? $fecha_foto->getTimestamp()."_".$_
 $tmp_fotoproducto = $_FILES["fotoproducto"]["tmp_name"];
 
 if ($tmp_fotoproducto != '') {
-    move_uploaded_file($tmp_fotoproducto,"../../images/".$nombreArchivo_foto);
+    move_uploaded_file($tmp_fotoproducto,"../images/".$nombreArchivo_foto);
 }
 
 mysqli_stmt_bind_param($stmt, "ssiddids", $nombre, $descripcion, $precio_venta, $stock, $lActivo, $precio_costo, $Departamento, $nombreArchivo_foto);

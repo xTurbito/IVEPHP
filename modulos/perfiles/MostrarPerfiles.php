@@ -9,7 +9,7 @@ if ($result->num_rows > 0) {
             <td>
                 <a name="btneditar" id="btneditar" class="btn edit" href="EditarUsuario.php?txtID=<?php echo $row['idPerfil']; ?>" role="button"><i class="fa-regular fa-pen-to-square"></i></a>
                 <span>|</span>
-                <a class="btn delete" href="javascript:void(0);" onclick="borrar(<?php echo $row['idPerfil']; ?>, '<?php echo $row['nombre']; ?>')" role="button"><i class="fa-solid fa-trash"></i></a>
+                <a class="btn delete" href="javascript:void(0);" onclick="borrar(<?php echo $row['idPerfil']; ?>, '<?php echo $row['idPerfil']; ?>')" role="button"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
 <?php

@@ -1,9 +1,7 @@
 <?php
-require("../../config/login.php");
+
 require("../../config/dbcontext.php");
 include("../../layout/top.php");
-
-
 ?>
 <div class="container">
     <div class="row justify-content-center">

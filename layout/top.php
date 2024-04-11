@@ -1,10 +1,5 @@
 <?php
-
 $url_base = "http://localhost/";
-$permisos = explode(",", $_SESSION["permisos"]);
-echo "Permisos de sesión: " . $_SESSION["permisos"]; // Imprime los permisos de la sesión
-echo "Permisos: ";
-print_r($permisos);
 ?>
 
 <!DOCTYPE html>
@@ -43,19 +38,61 @@ print_r($permisos);
                     <li class="sidebar-header">
                         Modulos
                     </li>
-                    <?php
-                    foreach ($permisos as $permiso) {
-                        if (array_key_exists($permiso, $modulos)) {
-                            echo '<li class="sidebar-item">
-                    <a href="' . $modulos[$permiso]["url"] . '" class="sidebar-link">
-                        <i class="' . $modulos[$permiso]["icon"] . '"></i>
-                        ' . $permiso . '
-                    </a>
-                  </li>';
-                        }
-                    }
-                    ?>
-                </ul>
+                    <li class="sidebar-item">
+                        <a href="<?php echo $url_base?>/" class="sidebar-link">
+                            <i class="fa-solid fa-house pe-2"></i>
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="<?php echo $url_base ?>modulos/Ventas/" class="sidebar-link">
+                        <i class="fa-solid fa-cash-register"></i>
+                            Venta
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="<?php echo $url_base?>modulos/usuarios/" class="sidebar-link">
+                            <i class="fa-solid fa-user pe-2"></i>
+                            Usuarios
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="<?php echo $url_base?>modulos/perfiles/" class="sidebar-link">
+                            <i class="fa-solid fa-user pe-2"></i>
+                            Perfiles
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="<?php echo $url_base?>modulos/productos/" class="sidebar-link">
+                            <i class="fa-solid fa-bag-shopping pe-2"></i>
+                            Productos
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="<?php echo $url_base ?>modulos/departamentos/" class="sidebar-link">
+                        <i class="fa-solid fa-layer-group pe-2"></i>
+                            Departamentos
+                        </a>
+                    </li>
+                    
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse" aria-expanded="false"><i class="fa-solid fa-thumbtack pe-2"></i>
+                            Reportes
+                        </a>
+                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="<?php echo $url_base ?>modulos/reportes/CatalogoProductos.php" class="sidebar-link">Catalogo de Productos</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Post 2</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Post 3</a>
+                            </li>
+                        </ul>
+                    </li>
+</ul>
+
             </div>
         </aside>
         <div class="main">

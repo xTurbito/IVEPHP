@@ -15,7 +15,7 @@ if (isset($datos["usuario"], $datos["nombre"], $datos["password"], $datos["tipo"
     $tipo = $datos["tipo"];
     $status = $datos["status"];
 
-    $sql = "UPDATE usuarios SET usuario = ?, nombre = ?, password = ?, tipo_usuclave = ?, lActivo = ? WHERE idusuario = ?";
+    $sql = "UPDATE usuarios SET usuario = ?, nombre = ?, password = ?, idPerfil = ?, lActivo = ? WHERE idusuario = ?";
 
     // Prepara la consulta
     $stmt = mysqli_prepare($link, $sql);

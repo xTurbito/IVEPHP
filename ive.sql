@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2024 a las 05:03:00
+-- Tiempo de generación: 11-04-2024 a las 05:42:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -52,8 +52,35 @@ INSERT INTO `departamentos` (`IDDepartamento`, `NombreDepartamento`, `lActivo`) 
 CREATE TABLE `perfiles` (
   `idPerfil` int(11) NOT NULL,
   `Permisos` varchar(255) DEFAULT NULL,
-  `lActivo` int(11) DEFAULT NULL
+  `lActivo` int(11) DEFAULT NULL,
+  `NombrePerfil` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `perfiles`
+--
+
+INSERT INTO `perfiles` (`idPerfil`, `Permisos`, `lActivo`, `NombrePerfil`) VALUES
+(1, 'Usuarios', NULL, 'Administrador');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permisos`
+--
+
+CREATE TABLE `permisos` (
+  `idPermiso` int(11) NOT NULL,
+  `NombrePermiso` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `permisos`
+--
+
+INSERT INTO `permisos` (`idPermiso`, `NombrePermiso`) VALUES
+(1, 'Usuarios'),
+(2, 'Productos');
 
 -- --------------------------------------------------------
 
@@ -78,7 +105,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`IDProducto`, `Nombre`, `Descripcion`, `precio_venta`, `Stock`, `lActivo`, `fotoproducto`, `precio_costo`, `IDDepartamento`) VALUES
-(81, 'Monitor Acer', '144hz', 300.00, 10, 1, '1712533189_monitor.jpg', 150.00, 7);
+(85, 'Monitor Gamer', '144hz', 300.00, 10, 1, '1712806706_monitor.jpg', 150.00, 4);
 
 -- --------------------------------------------------------
 
@@ -125,7 +152,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuario`, `usuario`, `password`, `nombre`, `lactivo`, `idPerfil`) VALUES
-(27, 'malcocer', 'Hola123', 'Miguel', 1, NULL),
+(27, 'malcocer', 'Hola123', 'Miguel', 1, 1),
 (34, 'BAJA', '444', 'Miguel Jesus Alcocer Arjona', 0, NULL),
 (35, 'BAJA', '1234', 'Brian Ruelas', 0, NULL),
 (36, 'BAJA', '12345', 'Frida Gonzalez', 0, NULL),
@@ -148,6 +175,12 @@ ALTER TABLE `perfiles`
   ADD PRIMARY KEY (`idPerfil`);
 
 --
+-- Indices de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD PRIMARY KEY (`idPermiso`);
+
+--
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
@@ -164,7 +197,8 @@ ALTER TABLE `proveedores`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`idusuario`);
+  ADD PRIMARY KEY (`idusuario`),
+  ADD KEY `idPerfil` (`idPerfil`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -180,13 +214,19 @@ ALTER TABLE `departamentos`
 -- AUTO_INCREMENT de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `idPerfil` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPerfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  MODIFY `idPermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -203,6 +243,12 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`IDDepartamento`) REFERENCES `departamentos` (`IDDepartamento`);
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idPerfil`) REFERENCES `perfiles` (`idPerfil`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

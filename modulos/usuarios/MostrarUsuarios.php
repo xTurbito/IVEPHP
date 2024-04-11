@@ -8,7 +8,7 @@ if ($result->num_rows > 0) {
             <td scope="row"><?php echo $row['usuario'] ?></td>
             <td scope="row"><?php echo $row['password'] ?></td>
             <td><?php echo $row['nombre'] ?></td>
-            <td><?php echo ($row['tipo_usuclave'] == 1) ? 'Administrador' : 'Usuario'; ?></td>
+            <td><?php echo ($row['idPerfil'] == 1) ? 'Administrador' : 'Usuario'; ?></td>
             <td><?php echo ($row['lactivo'] == 1) ? 'Activado' : 'Desactivado'; ?></td>
             <td>
               <a name="btneditar" id="btneditar" class="btn edit" href="EditarUsuario.php?txtID=<?php echo $row['idusuario']; ?>" role="button"><i class="fa-regular fa-pen-to-square"></i></a>

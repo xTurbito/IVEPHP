@@ -14,7 +14,7 @@ if (isset($_GET['txtID'])) {
         $usuario = $registro["usuario"];
         $nombre = $registro["nombre"];
         $password = $registro["password"];
-        $tipo_usuario = $registro["tipo_usuclave"];
+        $tipo_usuario = $registro["idPerfil"];
         $lactivo = $registro["lactivo"];
     } else {
         echo ("NO SE ENCONTRARON REGISTROS");
@@ -48,8 +48,8 @@ if (isset($_GET['txtID'])) {
             <div class="mb-3">
                 <label for="tipo" class="form-label">Tipo de Usuario</label>
                 <select class="form-select form-select" name="tipo" id="tipo">
-                    <option value="1" <?php echo ($registro["tipo_usuclave"] == 1) ? 'selected' : ''; ?>>Administrador</option>
-                    <option value="2" <?php echo ($registro["tipo_usuclave"] == 2) ? 'selected' : ''; ?>>Usuario</option>
+                    <option value="1" <?php echo ($registro["idPerfil"] == 1) ? 'selected' : ''; ?>>Administrador</option>
+                    <option value="2" <?php echo ($registro["idPerfil"] == 2) ? 'selected' : ''; ?>>Usuario</option>
                 </select>
             </div>
             <div class="mb-3">

@@ -1,5 +1,5 @@
 <?php
-require("../../config/login.php");
+
 include("../../layout/top.php") ?>
 <div class="container mt-3">
     <div class="card">
