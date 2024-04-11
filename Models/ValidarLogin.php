@@ -10,9 +10,7 @@ if(isset($datos["usuario"], $datos["password"])) {
     $usuario = $datos["usuario"];
     $password = $datos["password"];
 
-    $sql = "SELECT usuarios.*, perfiles.permisos FROM usuarios 
-            INNER JOIN perfiles ON usuarios.idPerfil = perfiles.idPerfil
-            WHERE usuarios.usuario = ? AND usuarios.password = ?";
+    $sql = "SELECT * FROM usuarios WHERE usuario = ? AND password = ?";
     $stmt = mysqli_prepare($link, $sql);
 
     if ($stmt) {
@@ -22,7 +20,6 @@ if(isset($datos["usuario"], $datos["password"])) {
             if ($row = mysqli_fetch_assoc($result)) {
                 $Resultado = "ok";
                 $_SESSION["usuario"] = $usuario;
-                $_SESSION["permisos"] = $row["permisos"];
                  
             } else {
                 $Resultado = "error: usuario o contraseña incorrectos";

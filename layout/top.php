@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $url_base = "http://localhost/";
 $permisos = explode(",", $_SESSION["permisos"]);
 echo "Permisos de sesión: " . $_SESSION["permisos"]; // Imprime los permisos de la sesión
