@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2024 a las 05:42:09
+-- Tiempo de generación: 11-04-2024 a las 07:41:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -61,7 +61,8 @@ CREATE TABLE `perfiles` (
 --
 
 INSERT INTO `perfiles` (`idPerfil`, `Permisos`, `lActivo`, `NombrePerfil`) VALUES
-(1, 'Usuarios', NULL, 'Administrador');
+(1, 'Usuarios', NULL, 'Administrador'),
+(2, 'Usuarios,Productos', NULL, 'asda');
 
 -- --------------------------------------------------------
 
@@ -152,7 +153,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuario`, `usuario`, `password`, `nombre`, `lactivo`, `idPerfil`) VALUES
-(27, 'malcocer', 'Hola123', 'Miguel', 1, 1),
+(27, 'malcocer', 'Hola123', 'Miguel', 1, 2),
 (34, 'BAJA', '444', 'Miguel Jesus Alcocer Arjona', 0, NULL),
 (35, 'BAJA', '1234', 'Brian Ruelas', 0, NULL),
 (36, 'BAJA', '12345', 'Frida Gonzalez', 0, NULL),
@@ -214,7 +215,7 @@ ALTER TABLE `departamentos`
 -- AUTO_INCREMENT de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `idPerfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPerfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`

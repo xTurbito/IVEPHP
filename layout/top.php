@@ -1,6 +1,15 @@
 <?php
 $url_base = "http://localhost/";
+$modulos = [
+    ['url' => $url_base, 'icon' => 'fa-solid fa-house pe-2', 'nombre' => 'Inicio'],
+    ['url' => $url_base . 'modulos/usuarios/', 'icon' => 'fa-solid fa-user pe-2', 'nombre' => 'Usuarios'],
+    ['url' => $url_base . 'modulos/productos/', 'icon' => 'fa-solid fa-cash-register', 'nombre' => 'Productos'],
+
+];
+$permisos = $_SESSION['permisos'];
+$permisos = explode(',', $permisos);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -38,61 +47,17 @@ $url_base = "http://localhost/";
                     <li class="sidebar-header">
                         Modulos
                     </li>
-                    <li class="sidebar-item">
-                        <a href="<?php echo $url_base?>/" class="sidebar-link">
-                            <i class="fa-solid fa-house pe-2"></i>
-                            Inicio
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="<?php echo $url_base ?>modulos/Ventas/" class="sidebar-link">
-                        <i class="fa-solid fa-cash-register"></i>
-                            Venta
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="<?php echo $url_base?>modulos/usuarios/" class="sidebar-link">
-                            <i class="fa-solid fa-user pe-2"></i>
-                            Usuarios
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="<?php echo $url_base?>modulos/perfiles/" class="sidebar-link">
-                            <i class="fa-solid fa-user pe-2"></i>
-                            Perfiles
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="<?php echo $url_base?>modulos/productos/" class="sidebar-link">
-                            <i class="fa-solid fa-bag-shopping pe-2"></i>
-                            Productos
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="<?php echo $url_base ?>modulos/departamentos/" class="sidebar-link">
-                        <i class="fa-solid fa-layer-group pe-2"></i>
-                            Departamentos
-                        </a>
-                    </li>
-                    
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse" aria-expanded="false"><i class="fa-solid fa-thumbtack pe-2"></i>
-                            Reportes
-                        </a>
-                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <?php foreach ($modulos as $modulo) : ?>
+                        <?php if (in_array($modulo['nombre'], $permisos)) : ?>
                             <li class="sidebar-item">
-                                <a href="<?php echo $url_base ?>modulos/reportes/CatalogoProductos.php" class="sidebar-link">Catalogo de Productos</a>
+                                <a href="<?php echo $modulo['url'] ?>" class="sidebar-link">
+                                    <i class="<?php echo $modulo['icon'] ?>"></i>
+                                    <?php echo $modulo['nombre'] ?>
+                                </a>
                             </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Post 2</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Post 3</a>
-                            </li>
-                        </ul>
-                    </li>
-</ul>
-
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         </aside>
         <div class="main">
