@@ -16,6 +16,7 @@ include("../../layout/top.php")
             <th scope="col">Monto</th>
             <th scope="col">Fecha</th>
             <th scope="col">Vendedor</th>
+          
           </tr>
         </thead>
         <tbody>
