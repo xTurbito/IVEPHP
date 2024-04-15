@@ -7,20 +7,20 @@ $datos = json_decode($json, true);
 
 $Resultado = "error";
 
-if(isset($datos["usuario"], $datos["password"], $datos["nombre"], $datos["tipo"])) {
+if(isset($datos["usuario"], $datos["password"], $datos["nombre"], $datos["idPerfil"])) {
     // Validar los datos recibidos
     $usuario = $datos["usuario"];
     $password = $datos["password"];
     $nombre = $datos["nombre"];
-    $tipo_usuclave = $datos["tipo"]; 
+    $idPerfil = $datos["idPerfil"]; 
 
     $lActivo = 1;
 
-    $sql = "INSERT INTO usuarios(usuario, password, nombre, tipo_usuclave, lActivo) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO usuarios(usuario, password, nombre, idPerfil, lActivo) VALUES (?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($link, $sql);
 
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "ssssi", $usuario, $password, $nombre, $tipo_usuclave, $lActivo);
+        mysqli_stmt_bind_param($stmt, "ssssi", $usuario, $password, $nombre, $idPerfil, $lActivo);
         if (mysqli_stmt_execute($stmt)) {
             $Resultado = "ok";
         } else {

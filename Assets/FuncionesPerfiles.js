@@ -33,7 +33,7 @@ if(formPerfil){
 
         const data = Object.fromEntries(formData);
         data['permisos'] = checkboxValues; // Cambiado a 'permisos'
-        alert(JSON.stringify(data));
+        //alert(JSON.stringify(data));
 
         let URL = "../../Models/AltaPerfil.php";
 
@@ -46,7 +46,7 @@ if(formPerfil){
             if(response.data.Resultado == "ok"){
                 Swal.fire({
                     title: "<strong>Registro Exitoso</strong>",
-                        html: "<i>El Usuario <strong>" +
+                        html: "<i>El Perfil <strong>" +
                             data.nombre +
                             "</strong> fue creado con éxito</i>",
                         icon: "success",
@@ -70,5 +70,75 @@ if(formPerfil){
                 text: 'Error: ' + error.message,
             });
         });
+    });
+}
+
+
+const formEditarPerfil = document.querySelector("#formEditarPerfil");  
+if(formEditarPerfil) {
+    formEditarPerfil.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
+        const checkboxes = formEditarPerfil.querySelectorAll('input[type="checkbox"]');
+        const checkboxValues = Array.from(checkboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+
+        if (!checkboxValues.length) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `Al menos un permiso debe ser seleccionado`,
+            });
+            return;
+        }
+
+        formData.delete('permisos'); // Cambiado a 'permisos'
+
+        for (let [key, value] of formData.entries()) {
+            if (!value) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `El campo ${key} es requerido`,
+                });
+                return;
+            }
+        }
+
+        const data = Object.fromEntries(formData);
+        data['permisos'] = checkboxValues; // Cambiado a 'permisos'
+        alert(JSON.stringify(data));
+    
+        let URL = "../../Models/EditarPerfil.php";
+        
+        axios.post(URL,data, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(function(response){
+            if(response.data.Resultado == "ok"){
+                Swal.fire({
+                    title: "<strong>Actualización Exitosa</strong>",
+                        html: "<i>El Perfil <strong>" +
+                            data.nombre +
+                            "</strong> fue actualizado con éxito</i>",
+                        icon: "success",
+                        showCancelButton: false,
+                        confirmButtonText: "OK",
+                }).then(function(){
+                    window.location.href = "../../Modulos/Perfiles/index.php";
+                });
+            }else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal!',
+                });
+            }
+        })
     });
 }

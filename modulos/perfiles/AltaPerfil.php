@@ -1,6 +1,7 @@
 <?php
-
-include("../../layout/top.php") ?>
+require("../../config/login.php");
+include("../../layout/top.php")
+?>
 <div class="container mt-3">
     <div class="card">
         <div class="card-header">
@@ -14,9 +15,12 @@ include("../../layout/top.php") ?>
                 </div>
                 <div class="mb-3 p-3 border rounded">
                     <h3 class="text-center mb-3">PERMISOS</h3>
-                    <?php include("./MostrarPermisos.php") ?>
+                    
                 </div>
-                <div class="gap-2">
+                <div class="form-check d-flex justify-content-between mb-2">
+                <?php include("./MostrarPermisos.php") ?>
+                </div>
+                <div class="gap-2 mt-5">
                 <button type="submit" class="btn btn-success">Guardar</button>
                 <a class="btn btn-primary" href="index.php" role="button">Cancelar</a>
                 </div>

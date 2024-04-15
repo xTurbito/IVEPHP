@@ -1,6 +1,22 @@
 <?php
+require("../../config/dbcontext.php");
 
+$sql = "SELECT
+U.idusuario,
+U.usuario,
+U.password,
+U.nombre,
+U.idPerfil,
+U.lactivo,
+P.NombrePerfil
+FROM
+usuarios U
+INNER JOIN 
+perfiles P ON U.idPerfil = P.idPerfil
+WHERE
+U.lactivo = 1";
 
+$result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) { ?>
@@ -8,7 +24,7 @@ if ($result->num_rows > 0) {
             <td scope="row"><?php echo $row['usuario'] ?></td>
             <td scope="row"><?php echo $row['password'] ?></td>
             <td><?php echo $row['nombre'] ?></td>
-            <td><?php echo ($row['idPerfil'] == 1) ? 'Administrador' : 'Usuario'; ?></td>
+            <td><?php echo $row['NombrePerfil']?></td>
             <td><?php echo ($row['lactivo'] == 1) ? 'Activado' : 'Desactivado'; ?></td>
             <td>
               <a name="btneditar" id="btneditar" class="btn edit" href="EditarUsuario.php?txtID=<?php echo $row['idusuario']; ?>" role="button"><i class="fa-regular fa-pen-to-square"></i></a>

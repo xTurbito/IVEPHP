@@ -3,12 +3,15 @@ const formUsuario = document.querySelector("#formUsuario")
 if(formUsuario){
     formUsuario.addEventListener('submit', e => {
         e.preventDefault()
-        const data = new FormData(e.target);
+        const formdata = new FormData(e.target);
+
+        const data = Object.fromEntries(formdata.entries());
+        alert(JSON.stringify(data));    
 
         let URL = "../../Models/AltaUsuario.php";
 
-        for (let [key, value] of data.entries()) {
-            if (!value) {
+        for (let key in data) {
+            if (!data[key]) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -17,7 +20,6 @@ if(formUsuario){
                 return;
             }
         }
-
 
         axios.post(URL, data,{
             headers: {
@@ -59,55 +61,14 @@ if(formUsuario){
 
 
     
+//FUNCION PARA EDITAR USUARRIO
+const formEditarUsuario = document.querySelector("#formEditarUsuario")  
+if(formEditarUsuario){
+    formEditarUsuario.addEventListener('submit', e => {
+        e.preventDefault();
 
-//Funcion para editar al Usuario
-    const formEditarUsuario = document.getElementById("formEditarUsuario");
-    if (formEditarUsuario) {
-        formEditarUsuario.addEventListener("submit", function(e) {
-            e.preventDefault();
+        const data = new FormData(e.target);
 
-            let id = document.getElementById("id").value;
-            let usuario = document.getElementById("usuario").value;
-            let nombre = document.getElementById("nombre").value;
-            let password = document.getElementById("password").value;
-            let tipo = document.getElementById("tipo").value;
-            let status = document.getElementById("status").value;
-
-            let valores = {
-                id: id,
-                usuario: usuario,
-                nombre: nombre,
-                password: password,
-                tipo: tipo,
-                status: status
-            };
-
-            let URL = "../../Models/EditarUsuario.php";
-
-            axios.post(URL, valores, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(function(response) {
-                    if (response.data.Resultado == "ok") {
-                        Swal.fire({
-                            title: "<strong>Actualizacion Exitosa</strong>",
-                            html: "<i>El usuario <strong>" +
-                                nombre +
-                                "</strong> fue actualizado con éxito</i>",
-                            icon: "success",
-                            showCancelButton: false,
-                            confirmButtonText: "OK",
-                        }).then(function() {
-                            window.location.href = "../../Modulos/Usuarios/index.php";
-                        });
-                    } else {
-                        alert("ERROR!!!");
-                    }
-                })
-                .catch(function(error) {
-                    alert("Error: " + error.message);
-                });
-        });
-    }
+        alert(JSON.stringify(data));
+    });
+}

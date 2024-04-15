@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2024 a las 07:41:15
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: localhost
+-- Tiempo de generación: 11-04-2024 a las 22:35:29
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,8 +61,9 @@ CREATE TABLE `perfiles` (
 --
 
 INSERT INTO `perfiles` (`idPerfil`, `Permisos`, `lActivo`, `NombrePerfil`) VALUES
-(1, 'Usuarios', NULL, 'Administrador'),
-(2, 'Usuarios,Productos', NULL, 'asda');
+(1, 'Usuarios,Productos,Perfiles,Departamentos', NULL, 'Administrador'),
+(2, 'Productos', NULL, 'Bodeguero'),
+(3, 'Usuarios,Productos', NULL, 'Prueba');
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,9 @@ CREATE TABLE `permisos` (
 
 INSERT INTO `permisos` (`idPermiso`, `NombrePermiso`) VALUES
 (1, 'Usuarios'),
-(2, 'Productos');
+(2, 'Productos'),
+(3, 'Perfiles'),
+(4, 'Departamentos');
 
 -- --------------------------------------------------------
 
@@ -153,11 +156,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuario`, `usuario`, `password`, `nombre`, `lactivo`, `idPerfil`) VALUES
-(27, 'malcocer', 'Hola123', 'Miguel', 1, 2),
-(34, 'BAJA', '444', 'Miguel Jesus Alcocer Arjona', 0, NULL),
-(35, 'BAJA', '1234', 'Brian Ruelas', 0, NULL),
-(36, 'BAJA', '12345', 'Frida Gonzalez', 0, NULL),
-(37, 'BAJA', 'hola1234', 'Oscar Baez', 0, NULL);
+(27, 'BAJA', 'Hola123', 'Miguel', 0, 2),
+(38, 'Admin', '12345', 'Administrador', 1, 1),
+(39, 'BAJA', '12345', 'Miguel', 0, 1),
+(40, 'malcocer', '12345', 'Miguel Alcocer', 1, 2);
 
 --
 -- Índices para tablas volcadas
@@ -215,25 +217,25 @@ ALTER TABLE `departamentos`
 -- AUTO_INCREMENT de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `idPerfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idPerfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idPermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idPermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Restricciones para tablas volcadas

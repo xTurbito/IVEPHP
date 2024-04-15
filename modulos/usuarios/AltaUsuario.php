@@ -21,14 +21,7 @@ include("../../layout/top.php") ?>
                     <label for="password" class="form-label">Contraseña</label>
                     <input type="text" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Contraseña">
                 </div>
-                <div class="mb-3">
-                    <label for="tipo" class="form-label">Tipo de Usuario</label>
-                    <select class="form-select form-select" name="tipo" id="tipo">
-                        <option selected>Seleccione el tipo de usuario</option>
-                        <option value="1">Administrador</option>
-                        <option value="2">Usuario</option>
-                    </select>
-                </div>
+                <?php include("SelectPerfiles.php") ?>
                 <button type="submit" class="btn btn-success">Guardar</button>
                 <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
             </form>

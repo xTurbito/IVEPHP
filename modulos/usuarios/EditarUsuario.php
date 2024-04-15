@@ -45,13 +45,7 @@ if (isset($_GET['txtID'])) {
                 <label for="password" class="form-label">Contraseña</label>
                 <input type="text" value="<?php echo  $password; ?>" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Contraseña">
             </div>
-            <div class="mb-3">
-                <label for="tipo" class="form-label">Tipo de Usuario</label>
-                <select class="form-select form-select" name="tipo" id="tipo">
-                    <option value="1" <?php echo ($registro["idPerfil"] == 1) ? 'selected' : ''; ?>>Administrador</option>
-                    <option value="2" <?php echo ($registro["idPerfil"] == 2) ? 'selected' : ''; ?>>Usuario</option>
-                </select>
-            </div>
+            <?php include("SelectPerfiles.php") ?>
             <div class="mb-3">
                 <label for="status" class="form-label">Estado del Usuario</label>
                 <select aria-valuemax="" class="form-select form-select" name="status" id="status">

@@ -1,7 +1,7 @@
 <?php
-
 require("../../config/dbcontext.php");
-include("../../layout/top.php");
+require("../../config/login.php");
+include("../../layout/top.php")
 ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -29,9 +29,9 @@ include("../../layout/top.php");
         </div>
     </div>
 </div>
+
+
 <script src="../../Assets/Funciones.js"></script>
-
-
 <?php
 include("../../layout/foot.php");
 ?>
