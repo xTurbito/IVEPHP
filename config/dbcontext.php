@@ -1,8 +1,8 @@
 <?php
-$server= "sql5.freesqldatabase.com";
-$user= "sql5700277";
-$pass = "hFG9fehTLV";
-$db = "sql5700277";
+$server= "localhost";
+$user= "root";
+$pass = "";
+$db = "ive";
 $link = mysqli_connect($server, $user, $pass, $db);
 
 // Verificar la conexión

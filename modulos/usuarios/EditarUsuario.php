@@ -1,4 +1,5 @@
 <?php
+include("../../layout/top.php");
 require("../../config/login.php");
 require("../../config/dbcontext.php");
 
@@ -21,7 +22,6 @@ if (isset($_GET['txtID'])) {
     }
 }
 ?>
-<?php include("../../layout/top.php") ?>
 <div class="container mt-3">
     <div class="card">
         <div class="card-header">

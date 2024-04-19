@@ -1,5 +1,5 @@
 <?php
-require_once "./config/dbcontext.php";
+require_once "../config/dbcontext.php";
 require('./fpdf.php');
 
 $json = file_get_contents("php://input");

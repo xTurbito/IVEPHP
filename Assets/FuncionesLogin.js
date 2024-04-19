@@ -1,39 +1,56 @@
-document.querySelector("#formLogin")
-.addEventListener('submit', e => { 
-    e.preventDefault()
-    const data = Object.fromEntries(
-        //El formdata lee los names de los inputs
-        new FormData(e.target)
-    )   
+const formLogin =  document.querySelector('#formLogin');
+if(formLogin){
+    formLogin.addEventListener('submit', e => {
+        e.preventDefault();
+        const formdata = new FormData(e.target);
 
-    // Verificar que los datos no estén vacíos
-    if (!data.usuario || !data.password) {
-        alert('Por favor, completa todos los campos');
-        return;
-    }
+        const data = Object.fromEntries(formdata.entries());    
 
-    let URL = "../../Models/ValidarLogin.php";
+        let URL = "../../Models/ValidarLogin.php";
 
-    axios.post(URL, data,{
-        headers: {
-            'Content-Type': 'application/json'
+        for (let key in data) {
+            if (!data[key]) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `El campo ${key} es requerido`,
+                });
+                return;
+            }
         }
-    })
-    .then(function(response){
-        if(response.data.Resultado == "ok"){
+
+        axios.post(URL, data,{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(function(response){
+            if(response.data.Resultado == "ok"){
+                Swal.fire({
+                    title: "<strong>Acceso Correcto</strong>",
+                    html: "<i>Bienvenido <strong>" +
+                        data.usuario +
+                        "</strong> al Sistema</i>",
+                    icon: "success",
+                    showCancelButton: false,
+                    confirmButtonText: "OK",
+                }).then(function() {
+                    window.location.href = "../../modulos/usuarios/index.php";
+                });
+            }else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal!',
+                  });
+            }
+        })
+        .catch(function (error) {
             Swal.fire({
-                title: "<strong>Inicio de Sesión Exitoso</strong>",
-                html: "<i>Bienvenido <strong>" +
-                    data.usuario +
-                    "</strong></i>",
-                icon: "success",
-                showCancelButton: false,
-                confirmButtonText: "OK",
-            }).then(function() {
-                window.location.href = "./index.php";
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Error: ' + error.message,
             });
-        }else {
-            alert("ERROR!!!");
-        }
+          });
     })
-});
+}

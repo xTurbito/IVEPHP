@@ -34,7 +34,7 @@ require("../../config/dbcontext.php");
       </div>
     </div>
   </div>
-<script src="http://localhost/SistemaVentasPHP/Assets/Funciones.js"></script>
+<script src="../../Assets/Funciones.js"></script>
 <?php
 include("../../layout/foot.php");
 ?>

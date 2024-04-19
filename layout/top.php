@@ -44,7 +44,7 @@ $permisos = explode(',', $permisos);
             <div class="h-100">
                 <div class="sidebar-logo">
                     <a href="/">IVE</a>
-                    
+
                 </div>
                 <ul class="sidebar-nav">
                     <li class="sidebar-header">
@@ -72,11 +72,9 @@ $permisos = explode(',', $permisos);
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="" class="avatar img-fluid rounded" alt="">
+                                <i class="fa-solid fa-user"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Profile</a>
-                                <a href="#" class="dropdown-item">Setting</a>
                                 <a href="#" id="logout" class="dropdown-item">Logout</a>
                             </div>
                         </li>
@@ -90,7 +88,7 @@ $permisos = explode(',', $permisos);
                     fetch('../../Models/CerrarSesion.php')
                         .then(response => response.json())
                         .then(data => {
-                            window.location.href = 'login.php';
+                            window.location.href = 'https://<?php echo $_SERVER['HTTP_HOST']; ?>/';
                         })
                         .catch(error => console.log(error));
                 });

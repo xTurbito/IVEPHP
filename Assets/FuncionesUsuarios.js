@@ -43,7 +43,7 @@ if(formUsuario){
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Algo salió mal!',
+                    text: 'Revisa tus credenciales!',
                   });
             }
         })

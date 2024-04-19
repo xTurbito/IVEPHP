@@ -1,5 +1,5 @@
 <?php
-$sql = "SELECT * FROM ventas";
+$sql = "SELECT * FROM ventas ORDER BY idVenta DESC";
 $result = $link->query($sql);
 
 if($result->num_rows > 0){
@@ -11,7 +11,7 @@ if($result->num_rows > 0){
             <td><?php echo $row['total'] ?></td>
             <td><?php echo $row['fecha'] ?></td>
             <td>
-                <a name="btneditar" id="btneditar" class="btn edit" href="EditarVenta.php?txtID=<?php echo $row['idVenta']; ?>" role="button"><i class="fa-solid fa-eye"></i></a>
+                <a name="btnver" id="btnver" class="btn edit" href="VerVenta.php?txtID=<?php echo $row['idVenta']; ?>" role="button"><i class="fa-solid fa-eye"></i></a>
             </td>
         </tr>
 <?php

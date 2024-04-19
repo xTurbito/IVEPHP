@@ -97,7 +97,7 @@ if(formVenta){
         let totalVenta = parseFloat(document.getElementById('total').textContent.split('$')[1]);
         data.total = totalVenta;
 
-        alert(JSON.stringify(data));
+       // alert(JSON.stringify(data));
 
         let URL = "../../Models/AltaVenta.php";
 
@@ -118,7 +118,7 @@ if(formVenta){
                     showCancelButton: false,
                     confirmButtonText: "OK",
                 }).then(function() {
-                    window.location.href = "../../Modulos/ventas/index.php";
+                    window.location.href = "../../modulos/ventas/index.php";
                 });
             }else {
                 Swal.fire({
