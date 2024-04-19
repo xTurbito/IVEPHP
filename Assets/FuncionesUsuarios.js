@@ -37,7 +37,7 @@ if(formUsuario){
                     showCancelButton: false,
                     confirmButtonText: "OK",
                 }).then(function() {
-                    window.location.href = "../../Modulos/usuarios/index.php";
+                    window.location.href = "../../modulos/usuarios/index.php";
                 });
             }else {
                 Swal.fire({
@@ -100,7 +100,7 @@ if(formEditarUsuario){
                     showCancelButton: false,
                     confirmButtonText: "OK",
                 }).then(function() {
-                    window.location.href = "../../Modulos/usuarios/index.php";
+                    window.location.href = "../../modulos/usuarios/index.php";
                 });
             }else {
                 Swal.fire({

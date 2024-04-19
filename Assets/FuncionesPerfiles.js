@@ -53,7 +53,7 @@ if(formPerfil){
                         showCancelButton: false,
                         confirmButtonText: "OK",
                 }).then(function(){
-                    window.location.href = "../../Modulos/Perfiles/index.php";
+                    window.location.href = "../../modulos/perfiles/index.php";
                 });
             }else {
                 Swal.fire({
@@ -130,7 +130,7 @@ if(formEditarPerfil) {
                         showCancelButton: false,
                         confirmButtonText: "OK",
                 }).then(function(){
-                    window.location.href = "../../Modulos/Perfiles/index.php";
+                    window.location.href = "../../modulos/perfiles/index.php";
                 });
             }else {
                 Swal.fire({

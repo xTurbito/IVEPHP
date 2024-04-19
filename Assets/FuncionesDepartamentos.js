@@ -30,7 +30,7 @@ formDepartamento.addEventListener("submit", function(e) {
                     showCancelButton: false,
                     confirmButtonText: "OK",
                 }).then(function() {
-                    window.location.href = "../../Modulos/Departamentos/index.php";
+                    window.location.href = "../../modulos/departamentos/index.php";
                 });
             } else {
                 alert("ERROR!!!");
@@ -77,7 +77,7 @@ if(formEditarDepartamento){
                     showCancelButton: false,
                     confirmButtonText: "OK",
                 }).then(function() {
-                    window.location.href = "../../Modulos/Departamentos/index.php";
+                    window.location.href = "../../modulos/departamentos/index.php";
                 });
             } else {
                 alert("ERROR!!!");

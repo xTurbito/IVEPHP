@@ -30,7 +30,7 @@ if (formProducto) {
             showCancelButton: false,
             confirmButtonText: "OK",
           }).then(function () {
-            window.location.href = "../../Modulos/productos/index.php";
+            window.location.href = "../../modulos/productos/index.php";
           });
         } else {
           Swal.fire({
@@ -70,12 +70,12 @@ if(formEditarProducto){
             html:
               "<i>El Producto <strong>" +
               data.get('nombre') + 
-              "</strong> fue creado con éxito</i>",
+              "</strong> fue actualizado con éxito</i>",
             icon: "success",
             showCancelButton: false,
             confirmButtonText: "OK",
           }).then(function () {
-            window.location.href = "../../Modulos/productos/index.php";
+            window.location.href = "../../modulos/productos/index.php";
           });
         } else {
           alert("ERROR!!!");
