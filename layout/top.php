@@ -1,19 +1,17 @@
 <?php
-$url_base = "http://localhost/";
+$url_base = "https://" . $_SERVER['HTTP_HOST'];
 $modulos = [
-    ['url' => $url_base, 'icon' => 'fa-solid fa-house pe-2', 'nombre' => 'Inicio'],
-    ['url' => $url_base . 'modulos/Ventas/', 'icon' => 'fa-solid fa-cash-register pe-2', 'nombre' => 'Ventas'],
-    ['url' => $url_base . 'modulos/usuarios/', 'icon' => 'fa-solid fa-user pe-2', 'nombre' => 'Usuarios'],
-    ['url' => $url_base . 'modulos/perfiles/', 'icon' => 'fa-solid fa-address-card pe-2', 'nombre' => 'Perfiles'],
-    ['url' => $url_base . 'modulos/productos/', 'icon' => 'fa-solid fa-box pe-2', 'nombre' => 'Productos'],
-    ['url' => $url_base . 'modulos/departamentos/', 'icon' => 'fa-solid fa-building pe-2', 'nombre' => 'Departamentos'],
-    ['url' => $url_base . 'modulos/Reportes/', 'icon' => 'fa-solid fa-table-list pe-2', 'nombre' => 'Reportes'],
-    
+    ['url' => $url_base . '/', 'icon' => 'fa-solid fa-house pe-2', 'nombre' => 'Inicio'],
+    ['url' => $url_base . '/modulos/Ventas/', 'icon' => 'fa-solid fa-cash-register pe-2', 'nombre' => 'Ventas'],
+    ['url' => $url_base . '/modulos/usuarios/', 'icon' => 'fa-solid fa-user pe-2', 'nombre' => 'Usuarios'],
+    ['url' => $url_base . '/modulos/perfiles/', 'icon' => 'fa-solid fa-address-card pe-2', 'nombre' => 'Perfiles'],
+    ['url' => $url_base . '/modulos/productos/', 'icon' => 'fa-solid fa-box pe-2', 'nombre' => 'Productos'],
+    ['url' => $url_base . '/modulos/departamentos/', 'icon' => 'fa-solid fa-building pe-2', 'nombre' => 'Departamentos'],
+    ['url' => $url_base . '/modulos/Reportes/', 'icon' => 'fa-solid fa-table-list pe-2', 'nombre' => 'Reportes'],
 ];
 $permisos = $_SESSION['permisos'];
 $permisos = explode(',', $permisos);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -28,8 +26,8 @@ $permisos = explode(',', $permisos);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="http://localhost/layout/style.css">
-    <link rel="stylesheet" href="http://localhost/layout/buttons.css">
+    <link rel="stylesheet" href="https://<?php echo $_SERVER['HTTP_HOST']; ?>/layout/style.css">
+    <link rel="stylesheet" href="https://<?php echo $_SERVER['HTTP_HOST']; ?>/layout/buttons.css">
 
     <!--DATATABLES  -->
     <link href="https://cdn.jsdelivr.net/npm/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet" type="text/css">
@@ -88,10 +86,10 @@ $permisos = explode(',', $permisos);
                 document.getElementById('logout').addEventListener('click', function(e) {
                     e.preventDefault();
 
-                    fetch('http://localhost/Models/CerrarSesion.php')
+                    fetch('../../Model/CerrarSesion.php')
                         .then(response => response.json())
                         .then(data => {
-                            window.location.href = 'http://localhost/login.php';
+                            window.location.href = '"https://<?php echo $_SERVER['HTTP_HOST']; ?>login.php"';
                         })
                         .catch(error => console.log(error));
                 });

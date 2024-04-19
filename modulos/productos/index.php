@@ -3,6 +3,14 @@
 require("../../config/login.php");
 include("../../layout/top.php")
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <br>
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -36,5 +44,7 @@ include("../../layout/top.php")
         </div>
     </div>
 </div>
-<script src="http://localhost/SistemaVentasPHP/Assets/Funciones.js"></script>
+</body>
+</html>
+<script src="../../Assets/Funciones.js"></script>
 <?php include("../../layout/foot.php"); ?>
