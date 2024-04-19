@@ -87,10 +87,10 @@ $permisos = explode(',', $permisos);
                 document.getElementById('logout').addEventListener('click', function(e) {
                     e.preventDefault();
 
-                    fetch('../../Model/CerrarSesion.php')
+                    fetch('../../Models/CerrarSesion.php')
                         .then(response => response.json())
                         .then(data => {
-                            window.location.href = '"https://<?php echo $_SERVER['HTTP_HOST']; ?>login.php"';
+                            window.location.href = 'login.php';
                         })
                         .catch(error => console.log(error));
                 });
