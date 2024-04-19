@@ -28,6 +28,5 @@ include("../../layout/top.php") ?>
         </div>
     </div>
 </div>
-
 <?php include("../../layout/foot.php"); ?>
 

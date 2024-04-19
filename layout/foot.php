@@ -9,10 +9,10 @@
 <!-- FUNCIONES  -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="http://localhost/layout/script.js"></script>
-<script src="http://localhost/Assets/funcionesProductos.js"></script>
-<script src="http://localhost/Assets/funcionesUsuarios.js"></script>
-<script src="http://localhost/Assets/funcionesDepartamentos.js"></script>
-<script src="http://localhost/Assets/funcionesReportes.js"></script>
+<script src="http://localhost/Assets/FuncionesProductos.js"></script>
+<script src="http://localhost/Assets/FuncionesUsuarios.js"></script>
+<script src="http://localhost/Assets/FuncionesDepartamentos.js"></script>
+<script src="http://localhost/Assets/FuncionesReportes.js"></script>
 
 </body>
 </html>

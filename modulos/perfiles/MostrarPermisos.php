@@ -2,7 +2,7 @@
 require("../../config/dbcontext.php");
 
 
-$sql = "SELECT * FROM Permisos";
+$sql = "SELECT * FROM permisos";
 $result = $link->query($sql);
 
 if ($result->num_rows > 0) {

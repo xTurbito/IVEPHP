@@ -21,7 +21,7 @@ if (isset($_GET['txtID'])) {
         $fotoproducto = $registro["fotoproducto"];
 
         // Consulta para obtener el nombre del departamento
-        $query_todos_departamentos = $link->prepare("SELECT IDDepartamento,NombreDepartamento FROM Departamentos ");
+        $query_todos_departamentos = $link->prepare("SELECT IDDepartamento,NombreDepartamento FROM departamentos ");
         $query_todos_departamentos->execute();
         $result_todos_departamentos = $query_todos_departamentos->get_result();
     } else {

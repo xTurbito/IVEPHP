@@ -13,9 +13,9 @@ P.IDDepartamento,
 P.fotoproducto,
 D.NombreDepartamento
 FROM 
-Productos P
+productos P
 INNER JOIN 
-Departamentos D ON P.IDDepartamento = D.IDDepartamento
+departamentos D ON P.IDDepartamento = D.IDDepartamento
 WHERE
 P.Descripcion <> 'BAJA';";
 $result = $link->query($sql);
