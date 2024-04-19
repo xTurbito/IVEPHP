@@ -22,12 +22,12 @@ if (isset($_GET['txtID'])) {
 }
 ?>
 <?php include("../../layout/top.php") ?>
-<br>
-<div class="card">
-    <div class="card-header">
-        Datos del usuario
-    </div>
-    <div class="card-body">
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="d-flex justify-content-center">Nuevo Usuario</h3>
+        </div>
+        <div class="card-body">
         <form action="" method="post" id="formEditarUsuario">
             <div class="mb-3">
                 <input type="hidden" value="<?php echo $txtID; ?>" class="form-control" name="id" id="id" aria-describedby="helpId">
@@ -45,7 +45,7 @@ if (isset($_GET['txtID'])) {
                 <label for="password" class="form-label">Contraseña</label>
                 <input type="text" value="<?php echo  $password; ?>" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Contraseña">
             </div>
-            <?php include("SelectPerfiles.php") ?>
+            <?php include("SelectPerfilesEditar.php") ?>
             <div class="mb-3">
                 <label for="status" class="form-label">Estado del Usuario</label>
                 <select aria-valuemax="" class="form-select form-select" name="status" id="status">
@@ -57,6 +57,7 @@ if (isset($_GET['txtID'])) {
             <button type="submit" class="btn btn-success">Guardar</button>
             <a name="" id="" class="btn btn-primary" href="index.php" role="button">Cancelar</a>
         </form>
+        </div>
     </div>
 </div>
 <?php include("../../layout/foot.php"); ?>

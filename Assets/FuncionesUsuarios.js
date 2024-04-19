@@ -6,7 +6,7 @@ if(formUsuario){
         const formdata = new FormData(e.target);
 
         const data = Object.fromEntries(formdata.entries());
-        alert(JSON.stringify(data));    
+        
 
         let URL = "../../Models/AltaUsuario.php";
 
@@ -66,9 +66,56 @@ const formEditarUsuario = document.querySelector("#formEditarUsuario")
 if(formEditarUsuario){
     formEditarUsuario.addEventListener('submit', e => {
         e.preventDefault();
+        const formdata = new FormData(e.target);
+        const data = Object.fromEntries(formdata.entries());
+      
 
-        const data = new FormData(e.target);
+        let URL = "../../Models/EditarUsuario.php";
 
-        alert(JSON.stringify(data));
+        
+        for (let key in data) {
+            if (!data[key]) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `El campo ${key} es requerido`,
+                });
+                return;
+            }
+        }
+
+        axios.post(URL, data,{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(function(response){
+            if(response.data.Resultado == "ok"){
+                Swal.fire({
+                    title: "<strong>Registro Exitoso</strong>",
+                    html: "<i>El Usuario <strong>" +
+                        data.nombre +
+                        "</strong> fue editado con éxito</i>",
+                    icon: "success",
+                    showCancelButton: false,
+                    confirmButtonText: "OK",
+                }).then(function() {
+                    window.location.href = "../../Modulos/usuarios/index.php";
+                });
+            }else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo salió mal!',
+                  });
+            }
+        })
+        .catch(function (error) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Error: ' + error.message,
+            });
+          });
     });
 }

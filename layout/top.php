@@ -2,11 +2,13 @@
 $url_base = "http://localhost/";
 $modulos = [
     ['url' => $url_base, 'icon' => 'fa-solid fa-house pe-2', 'nombre' => 'Inicio'],
+    ['url' => $url_base . 'modulos/Ventas/', 'icon' => 'fa-solid fa-cash-register pe-2', 'nombre' => 'Ventas'],
     ['url' => $url_base . 'modulos/usuarios/', 'icon' => 'fa-solid fa-user pe-2', 'nombre' => 'Usuarios'],
     ['url' => $url_base . 'modulos/perfiles/', 'icon' => 'fa-solid fa-address-card pe-2', 'nombre' => 'Perfiles'],
     ['url' => $url_base . 'modulos/productos/', 'icon' => 'fa-solid fa-box pe-2', 'nombre' => 'Productos'],
     ['url' => $url_base . 'modulos/departamentos/', 'icon' => 'fa-solid fa-building pe-2', 'nombre' => 'Departamentos'],
     ['url' => $url_base . 'modulos/Reportes/', 'icon' => 'fa-solid fa-table-list pe-2', 'nombre' => 'Reportes'],
+    
 ];
 $permisos = $_SESSION['permisos'];
 $permisos = explode(',', $permisos);

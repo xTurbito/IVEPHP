@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 11-04-2024 a las 22:35:29
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 19-04-2024 a las 07:23:39
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,6 +46,26 @@ INSERT INTO `departamentos` (`IDDepartamento`, `NombreDepartamento`, `lActivo`) 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalleventa`
+--
+
+CREATE TABLE `detalleventa` (
+  `idDetalle` int(11) NOT NULL,
+  `idVenta` int(11) NOT NULL,
+  `productos` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `detalleventa`
+--
+
+INSERT INTO `detalleventa` (`idDetalle`, `idVenta`, `productos`) VALUES
+(1, 1, 'Monitor Logitech'),
+(2, 1, 'Mouse Logitech');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `perfiles`
 --
 
@@ -61,9 +81,8 @@ CREATE TABLE `perfiles` (
 --
 
 INSERT INTO `perfiles` (`idPerfil`, `Permisos`, `lActivo`, `NombrePerfil`) VALUES
-(1, 'Usuarios,Productos,Perfiles,Departamentos', NULL, 'Administrador'),
-(2, 'Productos', NULL, 'Bodeguero'),
-(3, 'Usuarios,Productos', NULL, 'Prueba');
+(1, 'Usuarios,Productos,Perfiles,Departamentos,Ventas,Reportes', NULL, 'Administrador'),
+(2, 'Usuarios,Productos,Perfiles,Departamentos', NULL, 'Bodeguero');
 
 -- --------------------------------------------------------
 
@@ -84,7 +103,9 @@ INSERT INTO `permisos` (`idPermiso`, `NombrePermiso`) VALUES
 (1, 'Usuarios'),
 (2, 'Productos'),
 (3, 'Perfiles'),
-(4, 'Departamentos');
+(4, 'Departamentos'),
+(5, 'Ventas'),
+(6, 'Reportes');
 
 -- --------------------------------------------------------
 
@@ -109,32 +130,8 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`IDProducto`, `Nombre`, `Descripcion`, `precio_venta`, `Stock`, `lActivo`, `fotoproducto`, `precio_costo`, `IDDepartamento`) VALUES
-(85, 'Monitor Gamer', '144hz', 300.00, 10, 1, '1712806706_monitor.jpg', 150.00, 4);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `proveedores`
---
-
-CREATE TABLE `proveedores` (
-  `idProveedor` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `contacto` varchar(15) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `direccion` varchar(255) NOT NULL,
-  `lActivo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `proveedores`
---
-
-INSERT INTO `proveedores` (`idProveedor`, `nombre`, `contacto`, `email`, `direccion`, `lActivo`) VALUES
-(0, 'Nvidia', '9992412341', 'nvidia@gmail.com', 'Calle 60 LA', 1),
-(1, 'BARCEL', '9992541358', 'miguelalcocer2102@gmail.com', '596B 63', 0),
-(2, 'LALA', '9992501358', 'miguelalcocer2102@gmail.com', 'Calle 63 #596b x 56b y 60 La Herradura II', 1),
-(3, 'Bimbo', '9992501358', 'miguelalcocer2102@gmail.com', 'Calle 36 Zona', 1);
+(85, 'Monitor Gamer', '144hz', 300.00, 10, 1, '1712806706_monitor.jpg', 150.00, 4),
+(87, 'Mouse Logitech', 'Mouse Gamer', 300.00, 10, 1, '1713497746_mouse.jpg', 150.00, 6);
 
 -- --------------------------------------------------------
 
@@ -157,9 +154,35 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idusuario`, `usuario`, `password`, `nombre`, `lactivo`, `idPerfil`) VALUES
 (27, 'BAJA', 'Hola123', 'Miguel', 0, 2),
-(38, 'Admin', '12345', 'Administrador', 1, 1),
-(39, 'BAJA', '12345', 'Miguel', 0, 1),
-(40, 'malcocer', '12345', 'Miguel Alcocer', 1, 2);
+(38, 'BAJA', '12345', 'Administrador', 0, 1),
+(40, 'BAJA', '12345', 'Miguel Alcocer', 0, 2),
+(41, 'BAJA', 'hola123', 'Miguel Alcocer', 0, 1),
+(42, 'BAJA', '12345', 'Miguel Alcocer', 0, 1),
+(43, 'BAJA', '12345', 'Miguel Alcocer', 0, 1),
+(44, 'Admin', '12345', 'Miguel Alcocer', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ventas`
+--
+
+CREATE TABLE `ventas` (
+  `idVenta` int(11) NOT NULL,
+  `cajera` varchar(50) NOT NULL,
+  `cliente` varchar(50) NOT NULL,
+  `total` varchar(50) NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `ventas`
+--
+
+INSERT INTO `ventas` (`idVenta`, `cajera`, `cliente`, `total`, `fecha`) VALUES
+(1, 'Miguel', 'UPP', '1500', '2024-04-18'),
+(5, 'Admin', 'Frida', '600', '2024-04-19'),
+(6, 'Admin', 'Joaquin Catzim', '300', '2024-04-19');
 
 --
 -- Índices para tablas volcadas
@@ -170,6 +193,13 @@ INSERT INTO `usuarios` (`idusuario`, `usuario`, `password`, `nombre`, `lactivo`,
 --
 ALTER TABLE `departamentos`
   ADD PRIMARY KEY (`IDDepartamento`);
+
+--
+-- Indices de la tabla `detalleventa`
+--
+ALTER TABLE `detalleventa`
+  ADD PRIMARY KEY (`idDetalle`),
+  ADD KEY `idVenta` (`idVenta`);
 
 --
 -- Indices de la tabla `perfiles`
@@ -191,17 +221,17 @@ ALTER TABLE `productos`
   ADD KEY `IDDepartamento` (`IDDepartamento`);
 
 --
--- Indices de la tabla `proveedores`
---
-ALTER TABLE `proveedores`
-  ADD PRIMARY KEY (`idProveedor`);
-
---
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idusuario`),
   ADD KEY `idPerfil` (`idPerfil`);
+
+--
+-- Indices de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD PRIMARY KEY (`idVenta`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -214,32 +244,50 @@ ALTER TABLE `departamentos`
   MODIFY `IDDepartamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT de la tabla `detalleventa`
+--
+ALTER TABLE `detalleventa`
+  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `idPerfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idPerfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `idPermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `IDProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `detalleventa`
+--
+ALTER TABLE `detalleventa`
+  ADD CONSTRAINT `detalleventa_ibfk_1` FOREIGN KEY (`idVenta`) REFERENCES `ventas` (`idVenta`);
 
 --
 -- Filtros para la tabla `productos`

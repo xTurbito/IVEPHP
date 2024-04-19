@@ -1,5 +1,4 @@
 <?php
-require("../../config/dbcontext.php");
 
 $sql = "SELECT
 U.idusuario,
@@ -16,7 +15,9 @@ perfiles P ON U.idPerfil = P.idPerfil
 WHERE
 U.lactivo = 1";
 
-$result = $conn->query($sql);
+$result = $link->query($sql);
+
+$Resultado = "";
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) { ?>

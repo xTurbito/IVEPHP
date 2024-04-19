@@ -73,7 +73,7 @@ if(formPerfil){
     });
 }
 
-
+//EDITAR
 const formEditarPerfil = document.querySelector("#formEditarPerfil");  
 if(formEditarPerfil) {
     formEditarPerfil.addEventListener('submit', e => {
@@ -110,7 +110,7 @@ if(formEditarPerfil) {
 
         const data = Object.fromEntries(formData);
         data['permisos'] = checkboxValues; // Cambiado a 'permisos'
-        alert(JSON.stringify(data));
+        //alert(JSON.stringify(data));
     
         let URL = "../../Models/EditarPerfil.php";
         

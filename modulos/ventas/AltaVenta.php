@@ -3,11 +3,8 @@ require("../../config/login.php");
 include("../../layout/top.php")
 ?>
 <style>
-    #lista{
+    .mi-clase-ul {
         display: none;
-    }
-
-    ul{
         list-style: none;
         width: 250px;
         height: auto;
@@ -20,18 +17,50 @@ include("../../layout/top.php")
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
-    li{
+    .mi-clase-li {
         padding: 10px;
         border-bottom: 1px solid #ccc;
         cursor: pointer;
     }
 
-    li:hover {
+    .mi-clase-li:hover {
         background-color: #f5f5f5;
     }
 
-    li:last-child {
+    .mi-clase-li:last-child {
         border-bottom: none;
+    }
+
+    .mi-clase-input {
+        /* Aquí van tus estilos */
+        margin-bottom: 10px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .input-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .mi-clase-input {
+        flex-grow: 1;
+        margin-right: 10px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .mi-clase-boton {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #f44336;
+        color: white;
+        cursor: pointer;
     }
 </style>
 <div class="container mt-3">
@@ -41,55 +70,32 @@ include("../../layout/top.php")
         </div>
         <div>
             <div class="card-body">
-                <form action="" method="post" id="formVenta" autocomplete="off">
+                <form  method="post" id="formVenta" autocomplete="off">
+                    <input type="text" class="form-control" hidden name="cajera"value="<?php echo $_SESSION['usuario']; ?>">
                     <div class="mb-3">
                         <label for="cliente" class="form-label">Cliente</label>
                         <input type="text" class="form-control" name="cliente" id="cliente" placeholder="Ingresa el Nombre del Cliente">
                     </div>
-                    <div >
+                    <div>
                         <h3>Productos</h3>
                     </div>
                     <div class="row mb-3">
                         <div class="col">
                             <input type="text" class="form-control" name="producto" id="search" placeholder="Buscar...">
-                            <ul id="lista" ></ul>
+                            <ul id="lista" class="mi-clase-ul"></ul>
                         </div>
                     </div>
+                    <div class="mb-3" id="inputContainer">
+                        <input type="text" class="mb-3" id="inputNuevo" style="display: none;">
+                    </div>
+                    <div class="pt-5 pl-1">
+                        <h3 id="total">Total: $0</h3>
+                    </div>
+                    <button type="submit" id="submitVenta" class="btn btn-primary mt-3">Guardar Venta</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script>
-document.getElementById("search").addEventListener("keyup", getProductos);
-
-function getProductos(){
-    let inputProductos = document.getElementById("search").value;
-    let lista = document.getElementById("lista");
-
-    let url = "../../Models/getProductos.php"
-    let formData = new FormData();
-    formData.append("producto", inputProductos);
-
-    if(inputProductos.length > 0){
-
-
-    fetch(url, {
-        method: "POST",
-        body: formData,
-        mode: "cors"
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    }).then(data => {
-        lista.style.display = "block";
-        lista.innerHTML = data;
-    }).catch(err => console.log(err));
-   } else {
-         lista.style.display = "none";
-   }
-}
-</script>
+<script src="../../Assets/FuncionesVentas.js"> </script>
 <?php include("../../layout/foot.php"); ?>

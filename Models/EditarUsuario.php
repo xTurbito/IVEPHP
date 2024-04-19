@@ -6,13 +6,13 @@ $json = file_get_contents("php://input");
 $datos = json_decode($json, true);
 
 // Verifica si los datos requeridos están presentes
-if (isset($datos["usuario"], $datos["nombre"], $datos["password"], $datos["tipo"], $datos["status"], $datos["id"])) {
+if (isset($datos["usuario"], $datos["nombre"], $datos["password"], $datos["idPerfil"], $datos["status"], $datos["id"])) {
     
     $id = $datos["id"];
     $usuario = $datos["usuario"];
     $nombre = $datos["nombre"];
     $password = $datos["password"];
-    $tipo = $datos["tipo"];
+    $Perfil = $datos["idPerfil"];
     $status = $datos["status"];
 
     $sql = "UPDATE usuarios SET usuario = ?, nombre = ?, password = ?, idPerfil = ?, lActivo = ? WHERE idusuario = ?";
@@ -21,7 +21,7 @@ if (isset($datos["usuario"], $datos["nombre"], $datos["password"], $datos["tipo"
     $stmt = mysqli_prepare($link, $sql);
 
     // Vincula los parámetros
-    mysqli_stmt_bind_param($stmt, "ssssii", $usuario, $nombre, $password, $tipo, $status, $id);
+    mysqli_stmt_bind_param($stmt, "ssssii", $usuario, $nombre, $password, $Perfil, $status, $id);
 
     // Ejecuta la consulta
     if (mysqli_stmt_execute($stmt)) {

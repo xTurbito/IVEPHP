@@ -31,7 +31,7 @@ include("../../layout/top.php")
                 </tr>
               </thead>
               <tbody>
-               
+               <?php require('./MostrarUsuarios.php') ?>
               </tbody>
             </table>
           </div>
